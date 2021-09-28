@@ -1,14 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import "semantic-ui-css/semantic.min.css";
+import { BrowserRouter } from "react-router-dom";
+import "./fonts/HelveticaNeueLt.ttf";
+import "./fonts/HelveticaNeue.ttf";
+import "./fonts/HelveticaNeueMed.ttf";
+import "./fonts/HelveticaNeueBd.ttf";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+   <React.StrictMode>
+      <BrowserRouter>
+         <App />
+      </BrowserRouter>
+   </React.StrictMode>,
+   document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,0 +1,38 @@
+export const tableData = [
+   {
+      Patient: "Esther Howard",
+      Age: 25,
+      Status: "Recovered",
+      Examination: "Ongoing Treatment",
+      Diagnosis: "Influenza",
+      Recovery: 90,
+      Test: "completed",
+   },
+   {
+      Patient: "Cameron Williamson",
+      Age: 45,
+      Status: "Ongoing",
+      Examination: "Hospitalized",
+      Diagnosis: "Covid-19",
+      Recovery: 95,
+      Test: "completed",
+   },
+   {
+      Patient: "Jenny Wilson",
+      Age: 32,
+      Status: "Ongoing",
+      Examination: "On going examination",
+      Diagnosis: "Maleria",
+      Recovery: 67,
+      Test: "incomplete",
+   },
+   {
+      Patient: "Jacob Jones",
+      Age: 39,
+      Status: "Recovered",
+      Examination: "Ongoing Treatment",
+      Diagnosis: "Diahrreah",
+      Recovery: 40,
+      Test: "incomplete",
+   },
+];

@@ -1,0 +1,38 @@
+export const CardsData = [
+   {
+      id: 1,
+      total: 270,
+      subtitle: "Total Patient",
+      backgroundcolor: "#396CFF",
+      textcolor: "#396CFF",
+      width: "100%",
+      icon: "/icons/sick-white.svg",
+   },
+   {
+      id: 2,
+      total: 84,
+      subtitle: "Discharged Patients",
+      backgroundcolor: "#57C2FF",
+      textcolor: "#57C2FF",
+      width: "100%",
+      icon: "/icons/discharge-white.svg",
+   },
+   {
+      id: 3,
+      total: 75,
+      subtitle: "Admitted Patients",
+      backgroundcolor: "#55EDFF",
+      textcolor: "#55EDFF",
+      width: "100%",
+      icon: "/icons/admitted-white.svg",
+   },
+   {
+      id: 4,
+      total: 14,
+      subtitle: "Upcoming Appointments",
+      backgroundcolor: "#9597EC",
+      textcolor: "#9597EC",
+      width: "100%",
+      icon: "/icons/appointment-white.svg",
+   },
+];
