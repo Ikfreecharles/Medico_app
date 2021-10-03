@@ -8,7 +8,7 @@ import TableComponent from "../../../../Components/Dashboard-Component/Table.com
 const DashboardContainer = styled.div`
    background-color: #fff;
    padding: 2rem;
-   border-radius: 30px;
+
    margin-top: 2rem;
    border: 1px solid #eee;
 `;

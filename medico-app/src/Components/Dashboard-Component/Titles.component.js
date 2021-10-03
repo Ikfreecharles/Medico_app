@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 const Headings = styled.h2`
    color: ${(props) => props.color};
-   font-size: 1.5em;
+   font-size: 1.4rem;
    margin: 0;
-   font-weight: bolder;
+   font-weight: 600;
+   letter-spacing: -0.7px;
 `;
 
 const Titles = ({ title, color }) => {

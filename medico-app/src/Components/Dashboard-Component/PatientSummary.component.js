@@ -11,6 +11,8 @@ const PatientSummaryContainer = styled.div`
 
 const Heading = styled.h2`
    color: ${(props) => props.headingcolor};
+   font-size: 1.5rem;
+   letter-spacing: -0.7px;
 `;
 
 const PatientSummaryChartContainer = styled.div`

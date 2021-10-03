@@ -6,15 +6,19 @@ import { InboxData } from "../../../../Redux/Inbox.data";
 
 const DashboardInboxContainer = styled.section`
    background-color: #fff;
-   border-radius: 10px;
+   border-radius: 0px;
    border: 1px solid #eee;
 `;
 
 const DashboardInbox = () => {
    return (
       <DashboardInboxContainer>
-         <Submenu submenulist={["Inbox", "Appointments", "Notifications"]} />
-         <SearchField />
+         <div style={{ padding: "1rem" }}>
+            <Submenu submenulist={["Inbox", "Appointments", "Notifications"]} />
+            <div style={{ margin: "0.5rem 0" }}>
+               <SearchField />
+            </div>
+         </div>
          {InboxData.map((inboxitems) => {
             const { id, fullname, messagepreview, useravatar, time } =
                inboxitems;
@@ -24,7 +28,7 @@ const DashboardInbox = () => {
                   fullname={fullname}
                   messagepreview={messagepreview}
                   useravatar={useravatar}
-                  color={"#355DCF"}
+                  color={"#797979"}
                   bordercolor={"#E8E8E8"}
                   time={time}
                />

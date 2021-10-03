@@ -5,10 +5,11 @@ const DetailContainer = styled.div`
 `;
 
 const DetailHeading = styled.h3`
-   font-size: 0.7rem;
+   font-size: 0.75rem;
    text-transform: uppercase;
    color: ${(props) => props.headingcolor};
    margin-bottom: 0.2rem;
+   font-weight: 600;
 `;
 
 const DetailBody = styled.p`

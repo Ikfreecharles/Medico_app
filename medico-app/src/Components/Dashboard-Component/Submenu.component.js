@@ -1,4 +1,6 @@
+//import external libraries
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const SubmenuContainerdiv = styled.div`
    display: flex;
@@ -22,11 +24,16 @@ const SubmenuItem = styled.p`
    }
 `;
 
-const Submenu = ({ submenulist }) => {
+const Submenu = ({ submenulist, path, subpath }) => {
+   const { id, menutitle } = submenulist;
    return (
       <SubmenuContainerdiv>
-         {submenulist.map((list) => {
-            return <SubmenuItem>{list}</SubmenuItem>;
+         {menutitle.map((list, index) => {
+            return (
+               <Link to={id ? `${path}/${subpath}/${list}` : ""} key={index}>
+                  <SubmenuItem> {list}</SubmenuItem>
+               </Link>
+            );
          })}
       </SubmenuContainerdiv>
    );

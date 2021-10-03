@@ -8,7 +8,7 @@ const UserAvatarDetailsContainer = styled.div`
 
 const UserAvatar = styled.img`
    border-radius: 50%;
-   width: 80px;
+   width: 70px;
 `;
 const UserDetailsContainer = styled.div`
    margin-left: 1rem;
@@ -17,6 +17,8 @@ const Fullname = styled.h2`
    font-size: 1.6rem;
    color: ${(props) => props.namecolor};
    margin: 0;
+   font-weight: 500;
+   letter-spacing: -0.7px;
 `;
 
 const UserDetails = styled.p`

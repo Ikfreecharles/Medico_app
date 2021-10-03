@@ -5,17 +5,17 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter } from "react-router-dom";
-import "./fonts/HelveticaNeueLt.ttf";
-import "./fonts/HelveticaNeue.ttf";
-import "./fonts/HelveticaNeueMed.ttf";
-import "./fonts/HelveticaNeueBd.ttf";
+import { Provider } from "react-redux";
+import { store } from "./Redux/Store";
 
 ReactDOM.render(
-   <React.StrictMode>
-      <BrowserRouter>
-         <App />
-      </BrowserRouter>
-   </React.StrictMode>,
+   <Provider store={store}>
+      <React.StrictMode>
+         <BrowserRouter>
+            <App />
+         </BrowserRouter>
+      </React.StrictMode>
+   </Provider>,
    document.getElementById("root")
 );
 

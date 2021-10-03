@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const BigCardContainer = styled.div`
    width: ${(props) => props.width};
-   background: ${(props) => props.backgroundcolor};
+   background-color: ${(props) => props.backgroundcolor};
    border-radius: 30px;
-   padding: 2rem;
+   padding: 3rem;
    height: 350px;
+   color: #fff;
 `;
 
 const FlexStat = styled.div`
@@ -15,16 +16,18 @@ const FlexStat = styled.div`
 `;
 
 const Heading = styled.h2`
-   font-size: 1.2rem;
-   color: #fff;
+   font-size: 1.3rem;
+
    padding-bottom: 1.5rem;
+   letter-spacing: -0.7px;
 `;
 
 const CardNumber = styled.h2`
-   font-size: 8rem;
+   font-size: 6rem;
    color: ${(props) => props.cardnumbercolor};
    margin: 0;
    line-height: 1;
+   font-weight: 200;
 `;
 
 const Subtitle = styled.p`

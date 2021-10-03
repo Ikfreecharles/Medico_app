@@ -1,73 +1,57 @@
-import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
+//imports from external libraries
 import styled from "styled-components";
+import { useRouteMatch } from "react-router-dom";
+
+//imports from within the project
+import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
 import Titles from "../../../../Components/Dashboard-Component/Titles.component";
-import { SingleUserDetails } from "../../../../Redux/SingleUserDetails";
-import PatientVitalsCardComponent from "../../../../Components/Patient-Component/PatientVitalsCard.component";
-import TableWithAccordionComponent from "../../../../Components/Patient-Component/TableWithAccordion.component";
+import PatientVitalsContainer from "./Patient-vitals/Patient.vitals.container";
+import PatientCareplanContainer from "./Patient-vitals/Patient.careplan.container";
 
-const vitaltypecolor = "#D1D1D1";
-const vitalunitcolor = "#797979";
-
-const PatientVitalsContainer = styled.section`
+const PatientVitalsContainerDiv = styled.section`
    padding: 2rem;
    border: 1px solid #eee;
-   border-radius: 30px;
+   border-radius: 5px;
 `;
 
 const SubmenuContainer = styled.div`
    width: 70%;
 `;
 
-const VitalsTitleContainer = styled.div`
-   margin: 3rem 0;
-`;
-
-const VitalCardContainer = styled.div`
-   display: flex;
-   justify-content: space-between;
-   width: 90%;
-`;
-
 const PatientsVitals = () => {
-   const { Vitals } = SingleUserDetails;
+   let { url } = useRouteMatch();
    return (
-      <PatientVitalsContainer>
+      <PatientVitalsContainerDiv>
          <div>
             <SubmenuContainer>
                <Submenu
-                  submenulist={["vital & care plan", "Activity", "Check up"]}
+                  submenulist={{
+                     id: "1",
+                     menutitle: ["vital & care plan", "Activity", "Check up"],
+                  }}
+                  path={url}
+                  subpath={"vitals"}
                />
             </SubmenuContainer>
-            <VitalsTitleContainer>
-               <Titles title={"Vitals"} color={"#355DCF"} />
-            </VitalsTitleContainer>
-            <VitalCardContainer>
-               {Vitals.map((vital) => {
-                  const { id, icon, vitalType, vitalNumber, unit, color } =
-                     vital;
-                  return (
-                     <PatientVitalsCardComponent
-                        key={id}
-                        vitalicon={icon}
-                        vitaltype={vitalType}
-                        vitalnumber={vitalNumber}
-                        vitalunit={unit}
-                        vitaltypecolor={vitaltypecolor}
-                        vitalnumbercolor={color}
-                        vitalunitcolor={vitalunitcolor}
-                     />
-                  );
-               })}
-            </VitalCardContainer>
+
+            <PatientVitalsContainer path={url} />
          </div>
          <div style={{ marginTop: "5rem" }}>
             <Titles title={"Care Plan"} color={"#355DCF"} />
-            <div style={{ marginTop: "1rem" }}>
-               <Submenu submenulist={["Activities & Goals", "Task Only"]} />
-               <TableWithAccordionComponent />
+
+            <div style={{ width: "50%", marginTop: "1rem" }}>
+               <Submenu
+                  submenulist={{
+                     id: "2",
+                     menutitle: ["Activities & Goals", "Task Only"],
+                  }}
+                  path={url}
+                  subpath={"vitals"}
+               />
             </div>
+            <PatientCareplanContainer path={url} />
          </div>
-      </PatientVitalsContainer>
+      </PatientVitalsContainerDiv>
    );
 };
 

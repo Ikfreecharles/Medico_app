@@ -6,7 +6,6 @@ const CardContainer = styled.div`
    color: ${(props) => props.textcolor};
    width: ${(props) => props.width};
    padding: 1.5rem;
-   border-radius: 30px;
    border: 1px solid #eee;
 `;
 
@@ -14,11 +13,14 @@ const Title = styled.h2`
    font-size: 3rem;
    padding: 0;
    margin: 0;
+   font-weight: 300;
 `;
 const Subtitle = styled.p`
    font-size: 1.2rem;
    padding: 0;
    margin: 0;
+   opacity: 0.4;
+   letter-spacing: -0.4px;
 `;
 
 const IconContainer = styled.div`
@@ -53,11 +55,19 @@ const Cards = ({
 }) => {
    return (
       <CardContainer textcolor={`${textcolor}`} width={`${width}`}>
-         <IconContainer backgroundcolor={backgroundcolor}>
-            <Icon src={icon} />
-         </IconContainer>
+         <div
+            style={{
+               display: "flex",
+               flexDirection: "column",
+               justifyContent: "space-between",
+            }}
+         >
+            <IconContainer backgroundcolor={backgroundcolor}>
+               <Icon src={icon} />
+            </IconContainer>
 
-         <Title>{title}</Title>
+            <Title>{title}</Title>
+         </div>
          <Subtitle>{subtitle}</Subtitle>
          <ViewAllButtonContainer>
             <ViewAllButton

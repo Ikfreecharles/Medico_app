@@ -6,13 +6,13 @@ import { ActivityData } from "../../../../Redux/Activity.data";
 
 const DashboardRecentActivityContainer = styled.section`
    background-color: #fff;
-   border-radius: 10px;
+
    padding: 1.5rem;
    margin-bottom: 2rem;
    border: 1px solid #eee;
 `;
 const ViewAllButtonContainer = styled.div`
-   margin-top: 30px;
+   margin-top: 13px;
    display: flex;
    justify-content: right;
 `;

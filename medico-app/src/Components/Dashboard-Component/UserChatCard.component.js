@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const UserChatCardContainer = styled.div`
    color: ${(props) => props.color};
-   width: 94%;
+   width: 100%;
    border-bottom: 1px solid ${(props) => props.bordercolor};
    display: flex;
    align-items: center;
@@ -32,6 +32,8 @@ const MessagePreviewContainer = styled.div`
 const UserFullName = styled.h2`
    font-size: 1rem;
    margin: 0;
+   letter-spacing: -0.3px;
+   font-weight: 500;
 `;
 
 const UserMessagePreview = styled.p`

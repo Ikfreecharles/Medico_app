@@ -39,15 +39,33 @@ const mountPatientToCell = (
    ongoingTreatmentCss,
    hospitalizedCss,
    ongoingExaminationCss,
-   tableCss
+   tableCss,
+   index
 ) => {
    if (patient === "Ongoing Treatment")
-      return <Table.Cell style={ongoingTreatmentCss}>{patient}</Table.Cell>;
+      return (
+         <Table.Cell key={index} style={ongoingTreatmentCss}>
+            {patient}
+         </Table.Cell>
+      );
    else if (patient === "Hospitalized")
-      return <Table.Cell style={hospitalizedCss}>{patient}</Table.Cell>;
+      return (
+         <Table.Cell key={index} style={hospitalizedCss}>
+            {patient}
+         </Table.Cell>
+      );
    else if (patient === "On going examination")
-      return <Table.Cell style={ongoingExaminationCss}>{patient}</Table.Cell>;
-   else return <Table.Cell style={tableCss}>{patient} </Table.Cell>;
+      return (
+         <Table.Cell key={index} style={ongoingExaminationCss}>
+            {patient}
+         </Table.Cell>
+      );
+   else
+      return (
+         <Table.Cell key={index} style={tableCss}>
+            {patient}
+         </Table.Cell>
+      );
 };
 
 const TableComponent = ({ tableData }) => {
@@ -55,9 +73,9 @@ const TableComponent = ({ tableData }) => {
       <Table style={tableContainerStyle} celled striped selectable>
          <Table.Header>
             <Table.Row>
-               {Object.keys(tableData[0]).map((title) => {
+               {Object.keys(tableData[0]).map((title, index) => {
                   return (
-                     <Table.HeaderCell style={tableCell}>
+                     <Table.HeaderCell style={tableCell} key={index}>
                         {title}
                      </Table.HeaderCell>
                   );
@@ -65,18 +83,19 @@ const TableComponent = ({ tableData }) => {
             </Table.Row>
          </Table.Header>
          <Table.Body>
-            {tableData.map((item) => {
+            {tableData.map((item, index) => {
                //console.log(item);
 
                return (
-                  <Table.Row>
-                     {Object.values(item).map((patientDetails) => {
+                  <Table.Row key={index}>
+                     {Object.values(item).map((patientDetails, index) => {
                         return mountPatientToCell(
                            patientDetails,
                            ongoingTreatmentStyle,
                            hospitalizedStyle,
                            ongoingExaminationStyle,
-                           tableStyle
+                           tableStyle,
+                           index
                         );
                      })}
                   </Table.Row>

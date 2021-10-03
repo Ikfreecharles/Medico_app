@@ -1,4 +1,4 @@
-import { Grid, GridColumn } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import BigCard from "../../../../Components/Dashboard-Component/BigCard.component";
 import BigCardChart from "../../../../Charts/BigCard.chart";
 import { BigCardData } from "../../../../Redux/BigCard.data";

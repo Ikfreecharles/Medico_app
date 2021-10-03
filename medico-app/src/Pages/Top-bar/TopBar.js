@@ -1,6 +1,9 @@
+//imports from external libraries
+import styled from "styled-components";
+
+//imports from within the project
 import Avatar from "../../Components/Dashboard-Component/Avatar.component";
 import { doctorImage } from "../../Redux/Image.profile";
-import styled from "styled-components";
 import { notificationicons, messageicons } from "../../Redux/Icons";
 import SearchField from "../../Components/Dashboard-Component/Search.component";
 
@@ -8,7 +11,6 @@ const TopBarContainer = styled.section`
    display: flex;
    align-items: center;
    justify-content: space-between;
-   padding: 2rem 3rem 0 2rem;
 `;
 const InnerContainer = styled.div`
    display: flex;
@@ -20,13 +22,15 @@ const TimeBar = styled.p`
 const DoctorName = styled.h2`
    font-size: 1.2rem;
    margin: 0 1rem;
+   letter-spacing: -0.5px;
+   font-weight: 600;
 `;
 const Icon = styled.img`
-   width: 20px;
+   width: 18px;
 `;
 const IconContainer = styled.div`
-   width: 40px;
-   height: 40px;
+   width: 30px;
+   height: 30px;
    border-radius: 50%;
    background-color: #396cff;
    display: flex;
@@ -51,7 +55,7 @@ function TopBar() {
             <IconContainer>
                <Icon src={messageicons.messageicon} alt={"message icon"} />
             </IconContainer>
-            <Avatar dimension={"60px"} backgroundimage={doctorImage.doctor} />
+            <Avatar dimension={"50px"} backgroundimage={doctorImage.doctor} />
          </InnerContainer>
       </TopBarContainer>
    );

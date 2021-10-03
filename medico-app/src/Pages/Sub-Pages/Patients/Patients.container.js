@@ -1,7 +1,10 @@
+//imports external libraries
 import { Grid } from "semantic-ui-react";
+import styled from "styled-components";
+
+//imports from project
 import PatientsFulldetails from "./Patients-components/Patients.fulldetails";
 import PatientsPatients from "./Patients-components/Patients.patients";
-import styled from "styled-components";
 import PatientsVitals from "./Patients-components/Patients.vitals";
 
 const PatientOuterContainer = styled.section``;

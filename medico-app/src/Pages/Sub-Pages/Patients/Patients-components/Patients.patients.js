@@ -7,14 +7,17 @@ import styled from "styled-components";
 const PatientsPatientsContainer = styled.section`
    padding: 2rem;
    border: 1px solid #eee;
-   border-radius: 30px;
+   border-radius: 5px;
 `;
 
 const PatientsPatients = () => {
    return (
       <PatientsPatientsContainer>
          <Submenu
-            submenulist={["All", "Admitted", "Registered", "Discharged"]}
+            submenulist={{
+               id: "3",
+               menutitle: ["All", "Admitted", "Registered", "Discharged"],
+            }}
          />
          <SearchField />
          <TableComponent tableData={PatientData} />

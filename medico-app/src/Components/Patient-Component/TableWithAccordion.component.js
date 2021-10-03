@@ -27,7 +27,9 @@ class TableWithAccordionComponent extends Component {
                         index={id}
                         active={activeIndex === id}
                      >
-                        <Icon name="dropdown" /> {Activity}
+                        <div>
+                           <Icon name="dropdown" /> {Activity} {Progress}
+                        </div>
                      </Accordion.Title>
                      <Accordion.Content active={activeIndex === id}>
                         <TableComponent tableData={goals} />

@@ -17,20 +17,19 @@ const VitalIcon = styled.img`
 
 const VitalType = styled.p`
    color: ${(props) => props.vitaltypecolor};
-   margin: 0.3rem 0 0;
+   margin: 1rem 0 0;
 `;
 
 const VitalNumber = styled.p`
-   font-size: 3rem;
+   font-size: 2.5rem;
    color: ${(props) => props.vitalnumbercolor};
-   font-weight: bolder;
    margin: 0;
-   line-height: 0.9;
+   line-height: 1.1;
 `;
 
 const VitalUnit = styled.p`
    color: ${(props) => props.vitalunitcolor};
-   text-align: right;
+   text-align: left;
 `;
 
 const PatientVitalsCardComponent = ({
