@@ -2,9 +2,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import SVG from "react-inlinesvg";
 
 //import from within the project
+import IconComponent from "../../../Components/Icon.component";
 import { SideBarItem } from "../../../Redux/SideBarItem";
 import { topbarTitleChange } from "../../../Redux/Top-bar/Topbar.actions";
 
@@ -18,9 +18,10 @@ const SideBarTitle = styled.section`
 const OuterContainer = styled.div`
    display: flex;
    align-items: center;
-   margin-left: 40px;
+   margin-left: 5px;
    font-size: 1.1rem;
    transition: background 1s ease-in;
+   height: 4rem;
 
    &:hover {
       background: rgb(0, 156, 244);
@@ -32,10 +33,6 @@ const OuterContainer = styled.div`
       border-radius: 0 1.5rem 1.5rem 0;
       font-weight: 600;
    }
-`;
-
-const SVGIconContainter = styled.div`
-   padding: 1.3rem 1rem 1.3rem 0;
 `;
 
 //use the toggle state to change the display of the side bar
@@ -64,12 +61,8 @@ const SideBar = () => {
                   <OuterContainer
                      onClick={() => dispatch(topbarTitleChange(title))}
                   >
-                     <SVGIconContainter>
-                        <SVG
-                           src={icon}
-                           style={{ width: "20px", height: "20px" }}
-                        />
-                     </SVGIconContainter>
+                     <IconComponent icon={icon} backgroundcolor={"#E5E5E5"} />
+
                      <MenuItem toggleHamburger={toggleHamburger}>
                         {title}
                      </MenuItem>

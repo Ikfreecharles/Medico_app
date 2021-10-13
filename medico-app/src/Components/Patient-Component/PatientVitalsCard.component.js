@@ -4,11 +4,14 @@ const PatientVitalComponentContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
+   justify-content: center;
+   padding: 0 !important;
 `;
 
 const VitalIconContainer = styled.div`
    height: 3rem;
    width: 3rem;
+   padding: 0 !important;
 `;
 const VitalIcon = styled.img`
    width: auto;
@@ -18,6 +21,10 @@ const VitalIcon = styled.img`
 const VitalType = styled.p`
    color: ${(props) => props.vitaltypecolor};
    margin: 1rem 0 0;
+`;
+
+const VitalNumberUnitDiv = styled.div`
+   padding: 0 !important;
 `;
 
 const VitalNumber = styled.p`
@@ -47,12 +54,12 @@ const PatientVitalsCardComponent = ({
             <VitalIcon src={vitalicon} alt={vitaltype} />
          </VitalIconContainer>
          <VitalType vitaltypecolor={vitaltypecolor}>{vitaltype}</VitalType>
-         <div>
+         <VitalNumberUnitDiv>
             <VitalNumber vitalnumbercolor={vitalnumbercolor}>
                {vitalnumber}
             </VitalNumber>
             <VitalUnit vitalunitcolor={vitalunitcolor}>{vitalunit}</VitalUnit>
-         </div>
+         </VitalNumberUnitDiv>
       </PatientVitalComponentContainer>
    );
 };

@@ -1,55 +1,47 @@
 //imports from external libraries
 import styled from "styled-components";
-import { useRouteMatch } from "react-router-dom";
+import { useState } from "react";
 
 //imports from within the project
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
-import Titles from "../../../../Components/Dashboard-Component/Titles.component";
-import PatientVitalsContainer from "./Patient-vitals/Patient.vitals.container";
-import PatientCareplanContainer from "./Patient-vitals/Patient.careplan.container";
+import PatientVitalCareplan from "./Patient-vitals/Patient-vitals-subfolder/Patient.vital-careplan";
+import PatientActivity from "./Patient-vitals/Patient-vitals-subfolder/Patient.activity";
+import PatientCheckup from "./Patient-vitals/Patient-vitals-subfolder/Patient.checkup";
 
 const PatientVitalsContainerDiv = styled.section`
-   padding: 2rem;
-   border: 1px solid #eee;
-   border-radius: 5px;
-`;
-
-const SubmenuContainer = styled.div`
-   width: 70%;
+   padding: 1rem;
+   background-color: #fff;
+   border-radius: 1rem;
 `;
 
 const PatientsVitals = () => {
-   let { url } = useRouteMatch();
+   const [submenuTitle, setSubmenuTitle] = useState("");
+
    return (
       <PatientVitalsContainerDiv>
          <div>
-            <SubmenuContainer>
-               <Submenu
-                  submenulist={{
-                     id: "1",
-                     menutitle: ["vital & care plan", "Activity", "Check up"],
-                  }}
-                  path={url}
-                  subpath={"vitals"}
-               />
-            </SubmenuContainer>
+            <Submenu
+               submenulist={[
+                  { id: "1", title: "Vital & Care Plan" },
+                  { id: "2", title: "Activity" },
+                  { id: "3", title: "Check up" },
+               ]}
+               width={"60%"}
+               component={
+                  (PatientVitalCareplan, PatientActivity, PatientCheckup)
+               }
+               setState={setSubmenuTitle}
+            />
 
-            <PatientVitalsContainer path={url} />
-         </div>
-         <div style={{ marginTop: "5rem" }}>
-            <Titles title={"Care Plan"} color={"#355DCF"} />
-
-            <div style={{ width: "50%", marginTop: "1rem" }}>
-               <Submenu
-                  submenulist={{
-                     id: "2",
-                     menutitle: ["Activities & Goals", "Task Only"],
-                  }}
-                  path={url}
-                  subpath={"vitals"}
-               />
-            </div>
-            <PatientCareplanContainer path={url} />
+            {submenuTitle === "Vital & Care Plan" ? (
+               <PatientVitalCareplan />
+            ) : submenuTitle === "Activity" ? (
+               <PatientActivity />
+            ) : submenuTitle === "Check up" ? (
+               <PatientCheckup />
+            ) : (
+               <PatientVitalCareplan />
+            )}
          </div>
       </PatientVitalsContainerDiv>
    );

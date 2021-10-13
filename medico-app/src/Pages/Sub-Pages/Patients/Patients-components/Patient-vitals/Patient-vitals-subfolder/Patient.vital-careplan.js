@@ -1,6 +1,5 @@
 //imports from external libraries
 import styled from "styled-components";
-import { useRouteMatch } from "react-router-dom";
 
 //imports from within the project
 import Titles from "../../../../../../Components/Dashboard-Component/Titles.component";
@@ -23,7 +22,6 @@ const PatientVitalCareplan = () => {
    const { Vitals } = SingleUserDetails;
    return (
       <>
-         {console.log(useRouteMatch())}
          <VitalsTitleContainer>
             <Titles title={"Vitals"} color={"#355DCF"} />
          </VitalsTitleContainer>

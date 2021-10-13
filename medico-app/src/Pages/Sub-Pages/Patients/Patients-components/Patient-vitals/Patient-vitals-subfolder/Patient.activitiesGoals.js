@@ -4,11 +4,7 @@
 import TableWithAccordionComponent from "../../../../../../Components/Patient-Component/TableWithAccordion.component";
 
 const PatientActivitiesGoals = () => {
-   return (
-      <div>
-         <TableWithAccordionComponent />
-      </div>
-   );
+   return <TableWithAccordionComponent />;
 };
 
 export default PatientActivitiesGoals;

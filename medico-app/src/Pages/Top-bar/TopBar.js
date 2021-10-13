@@ -11,11 +11,23 @@ const TopBarContainer = styled.section`
    display: flex;
    align-items: center;
    justify-content: space-between;
+
+   @media only screen and (max-width: 500px) {
+      display: block;
+   }
 `;
+
 const InnerContainer = styled.div`
    display: flex;
    align-items: center;
 `;
+
+const InnerContainerSearch = styled(InnerContainer)`
+   @media only screen and (max-width: 500px) {
+      display: block;
+   }
+`;
+
 const TimeBar = styled.p`
    font-size: 1.2rem;
 `;
@@ -42,10 +54,10 @@ const IconContainer = styled.div`
 function TopBar() {
    return (
       <TopBarContainer>
-         <InnerContainer>
+         <InnerContainerSearch>
             <SearchField />
             <TimeBar>{new Date().toUTCString()}</TimeBar>
-         </InnerContainer>
+         </InnerContainerSearch>
          <InnerContainer>
             <DoctorName>Welcome, Dr Savannah</DoctorName>
             <Icon

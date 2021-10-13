@@ -6,9 +6,9 @@ import styled from "styled-components";
 
 const headingcolor = "#000";
 const PatientFullDetailsContainer = styled.section`
-   padding: 2rem;
-   border: 1px solid #eee;
-   border-radius: 5px;
+   padding: 1rem;
+   border-radius: 1rem;
+   background-color: #fff;
 `;
 
 const PatientsFulldetails = () => {

@@ -1,4 +1,8 @@
+//imports from external libraries
+import { useState } from "react";
 import styled from "styled-components";
+
+//imports from within the projects
 import SearchField from "../../../../Components/Dashboard-Component/Search.component";
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
 import UserChatCard from "../../../../Components/Dashboard-Component/UserChatCard.component";
@@ -11,10 +15,19 @@ const DashboardInboxContainer = styled.section`
 `;
 
 const DashboardInbox = () => {
+   const [submenuTitle, setsubmenuTitle] = useState("");
    return (
       <DashboardInboxContainer>
          <div style={{ padding: "1rem" }}>
-            <Submenu submenulist={["Inbox", "Appointments", "Notifications"]} />
+            <Submenu
+               submenulist={[
+                  { id: "1", title: "Inbox" },
+                  { id: "2", title: "Appointments" },
+                  { id: "3", title: "Notifications" },
+               ]}
+               width={"100%"}
+               setState={setsubmenuTitle}
+            />
             <div style={{ margin: "0.5rem 0" }}>
                <SearchField />
             </div>

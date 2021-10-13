@@ -1,40 +1,53 @@
 //import external libraries
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const SubmenuContainerdiv = styled.div`
+   width: 100%;
+   border-bottom: 1px solid #e8e8e8;
+   padding: 0 !important;
+`;
+
+const SubmenuContainerInnerdiv = styled.div`
    display: flex;
    align-items: center;
    justify-content: space-between;
-   height: 3rem;
+   width: ${(props) => props.width};
+   padding: 0 !important;
 `;
 
 const SubmenuItem = styled.p`
    color: rgba(94, 110, 194, 0.4);
    text-transform: uppercase;
+   font-weight: 600;
    transition: all 0.2s ease-in;
    cursor: pointer;
    margin: 0;
-   font-size: 1.1rem;
+   padding-bottom: 0.5rem;
    &:hover {
       color: rgba(53, 93, 207, 1);
-      border-radius: 3rem;
-      background-color: rgba(53, 93, 207, 0.2);
-      padding: 1rem 1.6rem;
    }
 `;
 
-const Submenu = ({ submenulist, path, subpath }) => {
-   const { id, menutitle } = submenulist;
+const Submenu = ({ submenulist, width, setState }) => {
    return (
       <SubmenuContainerdiv>
-         {menutitle.map((list, index) => {
-            return (
-               <Link to={id ? `${path}/${subpath}/${list}` : ""} key={index}>
-                  <SubmenuItem> {list}</SubmenuItem>
-               </Link>
-            );
-         })}
+         <SubmenuContainerInnerdiv width={width}>
+            {submenulist ? (
+               submenulist.map((list) => {
+                  const { id, title } = list;
+                  return (
+                     <SubmenuItem
+                        key={id}
+                        onClick={(e) => setState(e.target.innerHTML)}
+                     >
+                        {title}
+                     </SubmenuItem>
+                  );
+               })
+            ) : (
+               <h3>Loading</h3>
+            )}
+         </SubmenuContainerInnerdiv>
       </SubmenuContainerdiv>
    );
 };

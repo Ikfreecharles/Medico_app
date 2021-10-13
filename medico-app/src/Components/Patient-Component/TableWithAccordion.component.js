@@ -3,6 +3,12 @@ import { Accordion, Icon } from "semantic-ui-react";
 import TableComponent from "../Dashboard-Component/Table.component";
 import { ActivitiesGoal } from "../../Redux/ActivitiesGoals.data";
 
+const tableStyling = {
+   fontFamily: "Work Sans",
+   fontWeight: "500",
+   paddingLeft: "0",
+};
+
 class TableWithAccordionComponent extends Component {
    state = { activeIndex: 0 };
 
@@ -26,6 +32,7 @@ class TableWithAccordionComponent extends Component {
                         onClick={this.handleClick}
                         index={id}
                         active={activeIndex === id}
+                        style={tableStyling}
                      >
                         <div>
                            <Icon name="dropdown" /> {Activity} {Progress}
