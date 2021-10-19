@@ -4,11 +4,13 @@ import Titles from "../../../../Components/Dashboard-Component/Titles.component"
 import { SingleUserDetails } from "../../../../Redux/SingleUserDetails";
 import styled from "styled-components";
 
-const headingcolor = "#000";
+const headingcolor = "#306EF6";
 const PatientFullDetailsContainer = styled.section`
-   padding: 1rem;
+   padding: 2rem;
    border-radius: 1rem;
    background-color: #fff;
+   height: 100%;
+   overflow-y: auto;
 `;
 
 const PatientsFulldetails = () => {
@@ -47,17 +49,17 @@ const PatientsFulldetails = () => {
             namecolor={"#797979"}
          />
          <UserDetails
-            userheading={"MAN'"}
+            userheading={"MAN"}
             userbody={Man}
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Address'"}
+            userheading={"Address"}
             userbody={Address}
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Preferred Communication'"}
+            userheading={"Preferred Communication"}
             userbody={PreferredCommunication}
             headingcolor={headingcolor}
          />
@@ -67,27 +69,27 @@ const PatientsFulldetails = () => {
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Insurance'"}
+            userheading={"Insurance"}
             userbody={listObject(Insurance)}
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Conditions'"}
+            userheading={"Conditions"}
             userbody={listArray(Conditions)}
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Medications'"}
+            userheading={"Medications"}
             userbody={listArray(Medications)}
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Allergies'"}
+            userheading={"Allergies"}
             userbody={listArray(Allergies)}
             headingcolor={headingcolor}
          />
          <UserDetails
-            userheading={"Last Appointment'"}
+            userheading={"Last Appointment"}
             userbody={LastAppointment}
             headingcolor={headingcolor}
          />

@@ -1,24 +1,30 @@
+//import from external libraries
 import styled from "styled-components";
+import SelectFilterComponent from "./SelectFilter.component";
+
+//import from within the project
+import Titles from "./Titles.component";
 
 const PatientSummaryContainer = styled.div`
    width: ${(props) => props.width};
    background: ${(props) => props.backgroundcolor};
-   border-radius: 30px;
+   border-radius: 3px;
    padding: 2rem;
-   height: 350px;
-   border: 1px solid #eee;
-`;
-
-const Heading = styled.h2`
-   color: ${(props) => props.headingcolor};
-   font-size: 1.5rem;
-   letter-spacing: -0.7px;
+   height: 400px;
+   div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
 `;
 
 const PatientSummaryChartContainer = styled.div`
-   height: 270px;
+   margin-top: 2rem;
+   height: 80%;
    width: 100%;
 `;
+
+const selectOptions = ["Monthly", "Quarterly", "Yearly"];
 
 const PatientSummary = ({
    title,
@@ -29,7 +35,14 @@ const PatientSummary = ({
 }) => {
    return (
       <PatientSummaryContainer backgroundcolor={backgroundcolor} width={width}>
-         <Heading headingcolor={headingcolor}>{title}</Heading>
+         <div>
+            <Titles title={title} color={headingcolor} />
+            <SelectFilterComponent
+               options={selectOptions}
+               label={"Show Data"}
+            />
+         </div>
+
          <PatientSummaryChartContainer>
             {patientsummarychart}
          </PatientSummaryChartContainer>

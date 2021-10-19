@@ -19,6 +19,7 @@ body {
    font-size: 12px !important;
    letter-spacing: -0.3px;
    font-family: "Work Sans", "san-serif" !important;
+   overscroll-behavior: none !important;
 }
 
 h1,
@@ -29,10 +30,5 @@ h5,
 h6,
 p {
    font-family: "Work Sans", "san-serif" !important;
-   font-weight: 400;
-}
-
-div {
-   padding-left: 0.4rem !important;
-   padding-right: 0.4rem !important;
+   font-weight: 500;
 }

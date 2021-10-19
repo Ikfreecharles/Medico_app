@@ -3,10 +3,10 @@ import { useState } from "react";
 import styled from "styled-components";
 
 //imports from within the projects
-import SearchField from "../../../../Components/Dashboard-Component/Search.component";
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
-import UserChatCard from "../../../../Components/Dashboard-Component/UserChatCard.component";
-import { InboxData } from "../../../../Redux/Inbox.data";
+import DashboardAppointmentpreview from "./Dashboard-PanePreview/Dashboard.appointmentpreview";
+import DashboardInboxpreview from "./Dashboard-PanePreview/Dashboard.inboxpreview";
+import DashboardNotificationspreview from "./Dashboard-PanePreview/Dashboard.notificationspreview";
 
 const DashboardInboxContainer = styled.section`
    background-color: #fff;
@@ -14,39 +14,27 @@ const DashboardInboxContainer = styled.section`
    border: 1px solid #eee;
 `;
 
+const submenu = [
+   { id: "1", title: "Inbox" },
+   { id: "2", title: "Appointments" },
+   { id: "3", title: "Notifications" },
+];
+
 const DashboardInbox = () => {
-   const [submenuTitle, setsubmenuTitle] = useState("");
+   const [submenuTitle, setsubmenuTitle] = useState(submenu[0].id);
    return (
       <DashboardInboxContainer>
          <div style={{ padding: "1rem" }}>
             <Submenu
-               submenulist={[
-                  { id: "1", title: "Inbox" },
-                  { id: "2", title: "Appointments" },
-                  { id: "3", title: "Notifications" },
-               ]}
+               submenulist={submenu}
                width={"100%"}
                setState={setsubmenuTitle}
             />
-            <div style={{ margin: "0.5rem 0" }}>
-               <SearchField />
-            </div>
+            <div style={{ margin: "0.5rem 0" }}></div>
          </div>
-         {InboxData.map((inboxitems) => {
-            const { id, fullname, messagepreview, useravatar, time } =
-               inboxitems;
-            return (
-               <UserChatCard
-                  key={id}
-                  fullname={fullname}
-                  messagepreview={messagepreview}
-                  useravatar={useravatar}
-                  color={"#797979"}
-                  bordercolor={"#E8E8E8"}
-                  time={time}
-               />
-            );
-         })}
+         {submenuTitle === submenu[0].id && <DashboardInboxpreview />}
+         {submenuTitle === submenu[1].id && <DashboardAppointmentpreview />}
+         {submenuTitle === submenu[2].id && <DashboardNotificationspreview />}
       </DashboardInboxContainer>
    );
 };

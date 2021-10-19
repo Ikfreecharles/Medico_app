@@ -1,16 +1,21 @@
 //imports from external libraries
 import styled from "styled-components";
+import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 
 //imports from within the project
 import Avatar from "../../Components/Dashboard-Component/Avatar.component";
 import { doctorImage } from "../../Redux/Image.profile";
-import { notificationicons, messageicons } from "../../Redux/Icons";
 import SearchField from "../../Components/Dashboard-Component/Search.component";
+import ViewAllButton from "../../Components/Dashboard-Component/ViewAllButton.component";
 
 const TopBarContainer = styled.section`
    display: flex;
    align-items: center;
-   justify-content: space-between;
+   justify-content: right;
+
+   background-color: #fff;
+   padding: 1rem 0;
 
    @media only screen and (max-width: 500px) {
       display: block;
@@ -22,52 +27,76 @@ const InnerContainer = styled.div`
    align-items: center;
 `;
 
-const InnerContainerSearch = styled(InnerContainer)`
-   @media only screen and (max-width: 500px) {
-      display: block;
-   }
-`;
-
 const TimeBar = styled.p`
    font-size: 1.2rem;
+   border: 1px solid #e8e8e8;
+   padding: 0.75rem 2rem;
+   border-radius: 3px;
+   margin: 0 0 0 2rem;
+
+   @media only screen and (max-width: 500px) {
+      margin: 0;
+   }
 `;
 const DoctorName = styled.h2`
    font-size: 1.2rem;
-   margin: 0 1rem;
+   margin: 0 2rem;
    letter-spacing: -0.5px;
    font-weight: 600;
 `;
-const Icon = styled.img`
-   width: 18px;
+
+const ViewAllContainer = styled.div`
+   margin-right: 2rem;
+
+   @media only screen and (max-width: 500px) {
+      display: none;
+   }
 `;
+
 const IconContainer = styled.div`
-   width: 30px;
-   height: 30px;
-   border-radius: 50%;
-   background-color: #396cff;
+   height: 100%;
+   width: 4rem;
    display: flex;
-   align-item: center;
+   align-items: center;
    justify-content: center;
-   margin: 0 1rem;
+   background-color: #fff;
+   margin-right: -1px;
+`;
+const iconStyle = {
+   fontSize: "2rem",
+};
+
+const AvatarDiv = styled.div`
+   padding: 0 1rem;
 `;
 
 function TopBar() {
    return (
       <TopBarContainer>
-         <InnerContainerSearch>
-            <SearchField />
-            <TimeBar>{new Date().toUTCString()}</TimeBar>
-         </InnerContainerSearch>
+         <SearchField />
+         <TimeBar>{new Date().toUTCString()}</TimeBar>
          <InnerContainer>
             <DoctorName>Welcome, Dr Savannah</DoctorName>
-            <Icon
-               src={notificationicons.notificationicon}
-               alt={"notification icon"}
-            />
+            <ViewAllContainer>
+               <ViewAllButton
+                  color={"#fff"}
+                  link={"Appointments"}
+                  backgroundcolor={"#306EF6"}
+                  text={"Make an appointment".toUpperCase()}
+               />
+            </ViewAllContainer>
             <IconContainer>
-               <Icon src={messageicons.messageicon} alt={"message icon"} />
+               <NotificationsRoundedIcon style={iconStyle} />
             </IconContainer>
-            <Avatar dimension={"50px"} backgroundimage={doctorImage.doctor} />
+            <IconContainer>
+               <EmailRoundedIcon style={iconStyle} />
+            </IconContainer>
+            <AvatarDiv>
+               <Avatar
+                  dimension={"50px"}
+                  backgroundimage={doctorImage.doctor}
+               />
+            </AvatarDiv>
          </InnerContainer>
       </TopBarContainer>
    );

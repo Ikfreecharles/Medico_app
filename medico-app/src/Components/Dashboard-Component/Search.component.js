@@ -1,12 +1,9 @@
+//imports from external libraries
 import { useReducer, useRef, useCallback, useEffect } from "react";
 import _ from "lodash";
 import faker from "faker";
 import { Search, Grid } from "semantic-ui-react";
-
-//css Style
-const searchBarStyle = {
-   marginRight: "10px",
-};
+import styled from "styled-components";
 
 const source = _.times(5, () => ({
    title: faker.company.companyName(),
@@ -36,6 +33,25 @@ function searchReducer(state, action) {
          throw new Error();
    }
 }
+
+//styling - styled component
+const SearchFieldContainer = styled.div`
+   div {
+      div {
+         div {
+            div {
+               input {
+                  border-radius: 3px !important;
+                  width: 20rem;
+                  padding-top: 1.05rem !important;
+                  padding-bottom: 1.05rem !important;
+                  border: 1px solid #e8e8e8 !important;
+               }
+            }
+         }
+      }
+   }
+`;
 
 function SearchField() {
    const [state, dispatch] = useReducer(searchReducer, initialState);
@@ -67,24 +83,25 @@ function SearchField() {
          clearTimeout(timeoutRef.current);
       };
    }, []);
-
    return (
-      <Grid style={searchBarStyle}>
-         <Grid.Column width={8}>
-            <Search
-               loading={loading}
-               onResultSelect={(e, data) =>
-                  dispatch({
-                     type: "UPDATE_SELECTION",
-                     selection: data.result.title,
-                  })
-               }
-               onSearchChange={handleSearchChange}
-               results={results}
-               value={value}
-            />
-         </Grid.Column>
-      </Grid>
+      <SearchFieldContainer>
+         <Grid style={{ margin: "0" }}>
+            <Grid.Column width={8} style={{ padding: "0" }}>
+               <Search
+                  loading={loading}
+                  onResultSelect={(e, data) =>
+                     dispatch({
+                        type: "UPDATE_SELECTION",
+                        selection: data.result.title,
+                     })
+                  }
+                  onSearchChange={handleSearchChange}
+                  results={results}
+                  value={value}
+               />
+            </Grid.Column>
+         </Grid>
+      </SearchFieldContainer>
    );
 }
 

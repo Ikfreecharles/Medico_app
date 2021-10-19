@@ -4,28 +4,30 @@ import { useState } from "react";
 
 //imports from within the project
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
-import PatientVitalCareplan from "./Patient-vitals/Patient-vitals-subfolder/Patient.vital-careplan";
-import PatientActivity from "./Patient-vitals/Patient-vitals-subfolder/Patient.activity";
-import PatientCheckup from "./Patient-vitals/Patient-vitals-subfolder/Patient.checkup";
+import PatientVitalCareplan from "./Patient-vitals/Patient.vital-careplan";
+import PatientActivity from "./Patient-vitals/Patient.activity";
+import PatientCheckup from "./Patient-vitals/Patient.checkup";
 
 const PatientVitalsContainerDiv = styled.section`
-   padding: 1rem;
+   padding: 2rem;
    background-color: #fff;
    border-radius: 1rem;
 `;
 
+const submenu = [
+   { id: "1", title: "Vital & Care Plan" },
+   { id: "2", title: "Activity" },
+   { id: "3", title: "Check up" },
+];
 const PatientsVitals = () => {
-   const [submenuTitle, setSubmenuTitle] = useState("");
+   const [submenuTitle, setSubmenuTitle] = useState(submenu[0].id);
+   console.log(submenuTitle);
 
    return (
       <PatientVitalsContainerDiv>
          <div>
             <Submenu
-               submenulist={[
-                  { id: "1", title: "Vital & Care Plan" },
-                  { id: "2", title: "Activity" },
-                  { id: "3", title: "Check up" },
-               ]}
+               submenulist={submenu}
                width={"60%"}
                component={
                   (PatientVitalCareplan, PatientActivity, PatientCheckup)
@@ -33,15 +35,10 @@ const PatientsVitals = () => {
                setState={setSubmenuTitle}
             />
 
-            {submenuTitle === "Vital & Care Plan" ? (
-               <PatientVitalCareplan />
-            ) : submenuTitle === "Activity" ? (
-               <PatientActivity />
-            ) : submenuTitle === "Check up" ? (
-               <PatientCheckup />
-            ) : (
-               <PatientVitalCareplan />
-            )}
+            {submenuTitle === submenu[0].id && <PatientVitalCareplan />}
+            {submenuTitle === submenu[1].id && <PatientActivity />}
+
+            {submenuTitle === submenu[2].id && <PatientCheckup />}
          </div>
       </PatientVitalsContainerDiv>
    );

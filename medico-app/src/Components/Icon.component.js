@@ -16,7 +16,7 @@ const IconComponentDiv = styled.div`
 const IconComponent = ({ icon, backgroundcolor }) => {
    return (
       <IconComponentDiv backgroundcolor={backgroundcolor}>
-         <SVG src={icon} style={{ width: "1.5rem", height: "1.5rem" }} />{" "}
+         <SVG src={icon} style={{ width: "1.5rem", height: "1.5rem" }} />
       </IconComponentDiv>
    );
 };

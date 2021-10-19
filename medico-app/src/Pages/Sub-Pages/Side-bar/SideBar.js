@@ -12,7 +12,7 @@ const SideBarTitle = styled.section`
    width: auto;
    height: 100vh;
    padding-top: 60px;
-   cursor: default;
+   cursor: pointer;
 `;
 
 const OuterContainer = styled.div`
@@ -31,7 +31,6 @@ const OuterContainer = styled.div`
          rgba(238, 238, 238, 1) 100%
       );
       border-radius: 0 1.5rem 1.5rem 0;
-      font-weight: 600;
    }
 `;
 
@@ -39,7 +38,9 @@ const OuterContainer = styled.div`
 const MenuItem = styled.p`
    padding: 1.3rem 1.3rem 1.3rem 0;
    margin-left: 1.2rem;
-   ${(props) => props.toggleHamburger && `display : none;`}
+   ${(props) => props.toggleHamburger && `display : none;`};
+   transition: all 1s ease-in;
+   font-weight: 600;
 `;
 
 const SideBar = () => {
@@ -61,8 +62,12 @@ const SideBar = () => {
                   <OuterContainer
                      onClick={() => dispatch(topbarTitleChange(title))}
                   >
-                     <IconComponent icon={icon} backgroundcolor={"#E5E5E5"} />
-
+                     <div style={{ padding: "0 1rem" }}>
+                        <IconComponent
+                           icon={icon}
+                           backgroundcolor={"#E5E5E5"}
+                        />
+                     </div>
                      <MenuItem toggleHamburger={toggleHamburger}>
                         {title}
                      </MenuItem>

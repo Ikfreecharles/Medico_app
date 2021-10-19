@@ -1,13 +1,14 @@
 //import external libraries
+import { useState } from "react";
 import styled from "styled-components";
 
-const SubmenuContainerdiv = styled.div`
+const SubmenuContainerdiv = styled.nav`
    width: 100%;
-   border-bottom: 1px solid #e8e8e8;
-   padding: 0 !important;
+   padding: 0;
+   margin-bottom: 2rem;
 `;
 
-const SubmenuContainerInnerdiv = styled.div`
+const SubmenuContainerInnerdiv = styled.ul`
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -15,20 +16,37 @@ const SubmenuContainerInnerdiv = styled.div`
    padding: 0 !important;
 `;
 
-const SubmenuItem = styled.p`
-   color: rgba(94, 110, 194, 0.4);
+const SubmenuItem = styled.li`
+   color: rgba(48, 110, 246, 0.4);
    text-transform: uppercase;
    font-weight: 600;
    transition: all 0.2s ease-in;
    cursor: pointer;
    margin: 0;
-   padding-bottom: 0.5rem;
+   padding: 0.4rem 1rem;
+   transition: all 0.2s ease-in-out;
+   text-decoration: none;
+   list-style-type: none;
+
+   &.activeTabStyle {
+      background-color: rgba(48, 110, 246, 0.16);
+      color: rgb(48, 110, 246);
+      border-radius: 3rem;
+   }
    &:hover {
-      color: rgba(53, 93, 207, 1);
+      color: rgb(48, 110, 246);
    }
 `;
 
 const Submenu = ({ submenulist, width, setState }) => {
+   const [activeTab, setActiveTab] = useState("1");
+
+   const handleClick = (e, setState, id) => {
+      e.preventDefault();
+      setState(id);
+      setActiveTab(id);
+   };
+
    return (
       <SubmenuContainerdiv>
          <SubmenuContainerInnerdiv width={width}>
@@ -38,7 +56,8 @@ const Submenu = ({ submenulist, width, setState }) => {
                   return (
                      <SubmenuItem
                         key={id}
-                        onClick={(e) => setState(e.target.innerHTML)}
+                        onClick={(e) => handleClick(e, setState, id)}
+                        className={id === activeTab ? "activeTabStyle" : ""}
                      >
                         {title}
                      </SubmenuItem>

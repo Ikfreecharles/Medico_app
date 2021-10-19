@@ -5,30 +5,41 @@ import DashboardTableContainer from "./Dashboard-components/Dashboard.table";
 import DashboardOverview from "./Dashboard-components/Dashboard.overview";
 import DashboardRecentActivity from "./Dashboard-components/Dashboard.recentActivity";
 import DashboardInbox from "./Dashboard-components/Dashboard.inbox";
+import DashboardAppointmentoverview from "./Dashboard-components/Dashboard.appointmentoverview";
 
-const DashboardOuterContainer = styled.section``;
-
-const DashboardInnerContainer = styled.section`
-   padding: 2rem;
+const DashboardOuterContainer = styled.section`
+   padding: 0.5rem 0rem;
 `;
+
+const gridColumStyle = {
+   padding: "0.4rem",
+};
 
 const Dashboard = () => {
    return (
       <DashboardOuterContainer>
-         <DashboardInnerContainer>
-            <Grid>
-               <Grid.Column mobile={16} tablet={16} computer={12}>
-                  <DashboardOverview />
-                  <DashboardCardsContainer />
-                  <DashboardTableContainer />
-               </Grid.Column>
+         <DashboardCardsContainer />
+         <Grid style={{ margin: "0" }}>
+            <Grid.Column
+               mobile={16}
+               tablet={16}
+               computer={12}
+               style={gridColumStyle}
+            >
+               <DashboardOverview />
+               <DashboardTableContainer />
+            </Grid.Column>
 
-               <Grid.Column mobile={16} tablet={6} computer={4}>
-                  <DashboardRecentActivity />
-                  <DashboardInbox />
-               </Grid.Column>
-            </Grid>
-         </DashboardInnerContainer>
+            <Grid.Column
+               mobile={16}
+               tablet={6}
+               computer={4}
+               style={gridColumStyle}
+            >
+               <DashboardAppointmentoverview />
+               <DashboardInbox />
+            </Grid.Column>
+         </Grid>
       </DashboardOuterContainer>
    );
 };

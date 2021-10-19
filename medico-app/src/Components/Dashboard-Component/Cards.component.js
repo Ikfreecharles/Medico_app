@@ -1,48 +1,65 @@
+//imports from external libraries
 import styled from "styled-components";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+
+//import from external libraries
 import ViewAllButton from "./ViewAllButton.component";
 
 const CardContainer = styled.div`
-   background-color: #fff;
-   color: ${(props) => props.textcolor};
+   background-color: ${(props) => props.backgroundcolor};
    width: ${(props) => props.width};
-   padding: 1.5rem;
-   border: 1px solid #eee;
+   padding: 2rem;
+   border-radius: 3px;
+   position: relative;
+   color: ${(props) => props.textcolor};
 `;
 
 const Title = styled.h2`
-   font-size: 3rem;
+   font-size: 2.5rem;
    padding: 0;
    margin: 0;
-   font-weight: 300;
+   font-weight: 600;
+   line-height: 2.2rem;
 `;
 const Subtitle = styled.p`
-   font-size: 1.2rem;
+   font-size: 1.3rem;
+   font-weight: 500;
    padding: 0;
    margin: 0;
-   opacity: 0.4;
    letter-spacing: -0.4px;
 `;
 
+const ChangeDiv = styled.div`
+   display: flex;
+   align-items: center;
+   margin: 0.5rem 0;
+`;
+
+const ChangeInfo = styled.p`
+   font-size: 0.9rem;
+   margin-left: 0.5rem;
+`;
+
 const IconContainer = styled.div`
-   width: 50px;
-   height: 50px;
+   width: 3.5rem;
+   height: 3.5rem;
    border-radius: 50%;
+   background-color: ${(props) => props.iconcolor};
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: ${(props) => props.backgroundcolor};
+   margin-right: 0.5rem;
 `;
 
 const Icon = styled.img`
-   width: 25px;
-   top: 0.8rem;
-   right: 0.8rem;
+   width: 2rem;
 `;
 
 const ViewAllButtonContainer = styled.div`
-   margin-top: 60px;
    display: flex;
    justify-content: right;
+   padding: 0;
 `;
 
 const Cards = ({
@@ -52,30 +69,49 @@ const Cards = ({
    backgroundcolor,
    textcolor,
    width,
+   changeInfo,
+   changeDirection,
+   link,
+   iconcolor,
 }) => {
    return (
-      <CardContainer textcolor={`${textcolor}`} width={`${width}`}>
-         <div
-            style={{
-               display: "flex",
-               flexDirection: "column",
-               justifyContent: "space-between",
-            }}
-         >
-            <IconContainer backgroundcolor={backgroundcolor}>
-               <Icon src={icon} />
+      <CardContainer
+         textcolor={textcolor}
+         width={width}
+         backgroundcolor={backgroundcolor}
+      >
+         <div style={{ display: "flex", padding: "0", alignItems: "top" }}>
+            <IconContainer iconcolor={iconcolor}>
+               <Icon src={icon} alt={subtitle} />
             </IconContainer>
-
-            <Title>{title}</Title>
+            <div>
+               <Title>{title}</Title>
+               <Subtitle>{subtitle}</Subtitle>
+               <ChangeDiv>
+                  {changeDirection === 1 && (
+                     <TrendingUpIcon
+                        style={{ color: "#9CD5AD", fontSize: "1.8rem" }}
+                     />
+                  )}
+                  {changeDirection === 0 && (
+                     <TrendingDownIcon
+                        style={{ color: "#DA615C", fontSize: "1.8rem" }}
+                     />
+                  )}
+                  <ChangeInfo>{changeInfo}</ChangeInfo>
+               </ChangeDiv>
+            </div>
          </div>
-         <Subtitle>{subtitle}</Subtitle>
-         <ViewAllButtonContainer>
+
+         {/* <ViewAllButtonContainer>
             <ViewAllButton
                color={"#fff"}
-               link={"/"}
-               backgroundcolor={"#396CFF"}
+               link={link}
+               backgroundcolor={"#1A55FF"}
+               text={"View all".toUpperCase()}
+               icon={true}
             />
-         </ViewAllButtonContainer>
+         </ViewAllButtonContainer> */}
       </CardContainer>
    );
 };

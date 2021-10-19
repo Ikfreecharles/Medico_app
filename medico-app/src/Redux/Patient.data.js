@@ -1,31 +1,30 @@
 export const PatientData = [
    {
+      id: 1,
       Patient: "Esther Howard",
       Age: 25,
-
-      Examination: "Ongoing Treatment",
-
-      Test: "completed",
+      Examination: { marker: 1, item: "Ongoing Treatment" },
+      Test: 100,
    },
    {
+      id: 2,
       Patient: "Cameron Williamson",
       Age: 45,
-
-      Examination: "Hospitalized",
-
-      Test: "completed",
+      Examination: { marker: 2, item: "Hospitalized" },
+      Test: 40,
    },
    {
+      id: 3,
       Patient: "Jenny Wilson",
       Age: 32,
-
-      Examination: "On going examination",
-      Test: "incomplete",
+      Examination: { marker: 3, item: "On going examination" },
+      Test: 68,
    },
    {
+      id: 4,
       Patient: "Jacob Jones",
       Age: 39,
-      Examination: "Ongoing Treatment",
-      Test: "incomplete",
+      Examination: { marker: 1, item: "Ongoing Treatment" },
+      Test: 24,
    },
 ];

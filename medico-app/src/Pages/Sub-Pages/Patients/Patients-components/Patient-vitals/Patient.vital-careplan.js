@@ -2,15 +2,14 @@
 import styled from "styled-components";
 
 //imports from within the project
-import Titles from "../../../../../../Components/Dashboard-Component/Titles.component";
-import PatientVitalsCardComponent from "../../../../../../Components/Patient-Component/PatientVitalsCard.component";
-import { SingleUserDetails } from "../../../../../../Redux/SingleUserDetails";
+import Titles from "../../../../../Components/Dashboard-Component/Titles.component";
+import PatientVitalsCardComponent from "../../../../../Components/Patient-Component/PatientVitalsCard.component";
+import { SingleUserDetails } from "../../../../../Redux/SingleUserDetails";
 
-const vitaltypecolor = "#D1D1D1";
-const vitalunitcolor = "#797979";
+const vitaltypecolor = "#306EF6";
 
 const VitalsTitleContainer = styled.div`
-   margin: 3rem 0;
+   margin-bottom: 2rem;
 `;
 
 const VitalCardContainer = styled.div`
@@ -23,21 +22,29 @@ const PatientVitalCareplan = () => {
    return (
       <>
          <VitalsTitleContainer>
-            <Titles title={"Vitals"} color={"#355DCF"} />
+            <Titles title={"Vitals"} color={"#306EF6"} />
          </VitalsTitleContainer>
          <VitalCardContainer>
             {Vitals.map((vital) => {
-               const { id, icon, vitalType, vitalNumber, unit, color } = vital;
+               const {
+                  id,
+                  icon,
+                  vitalType,
+                  vitalNumber,
+                  unit,
+                  changeInfo,
+                  changeDirection,
+               } = vital;
                return (
                   <PatientVitalsCardComponent
                      key={id}
                      vitalicon={icon}
                      vitaltype={vitalType}
                      vitalnumber={vitalNumber}
-                     vitalunit={unit}
                      vitaltypecolor={vitaltypecolor}
-                     vitalnumbercolor={color}
-                     vitalunitcolor={vitalunitcolor}
+                     unit={unit}
+                     changeInfo={changeInfo}
+                     changeDirection={changeDirection}
                   />
                );
             })}

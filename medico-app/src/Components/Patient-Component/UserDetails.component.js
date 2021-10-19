@@ -5,15 +5,14 @@ const DetailContainer = styled.div`
 `;
 
 const DetailHeading = styled.h3`
-   font-size: 0.75rem;
-   text-transform: uppercase;
+   font-size: 0.9rem;
    color: ${(props) => props.headingcolor};
    margin-bottom: 0.2rem;
    font-weight: 600;
 `;
 
 const DetailBody = styled.p`
-   font-size: 1.1rem;
+   font-size: 1rem;
    color: ${(props) => props.bodycolor};
 `;
 

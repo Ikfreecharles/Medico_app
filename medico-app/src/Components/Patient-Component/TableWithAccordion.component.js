@@ -25,7 +25,7 @@ class TableWithAccordionComponent extends Component {
       return (
          <Accordion>
             {ActivitiesGoal.map((activities) => {
-               const { id, Activity, Progress, goals } = activities;
+               const { id, Activity, Progress, Goals } = activities;
                return (
                   <div key={id}>
                      <Accordion.Title
@@ -39,7 +39,7 @@ class TableWithAccordionComponent extends Component {
                         </div>
                      </Accordion.Title>
                      <Accordion.Content active={activeIndex === id}>
-                        <TableComponent tableData={goals} />
+                        <TableComponent tableData={Goals} />
                      </Accordion.Content>
                   </div>
                );

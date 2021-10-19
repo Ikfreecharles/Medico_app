@@ -1,8 +1,9 @@
+//imports from external libraries
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
 import { Icon } from "semantic-ui-react";
 
+//imports from within the project
 import { hamburgerToggle } from "../../Redux/Hamburger/Hamburger.actions";
 
 const HamburgerAndHeadingContainer = styled.div`
