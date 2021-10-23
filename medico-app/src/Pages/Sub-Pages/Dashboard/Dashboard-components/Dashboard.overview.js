@@ -12,8 +12,8 @@ const DashboardOverview = () => {
    return (
       <PatientSummary
          title={"Patient Summary"}
-         headingcolor={"#306EF6"}
-         backgroundcolor={"#fff"}
+         headingcolor={"var(--main-blue)"}
+         backgroundcolor={"var(--main-white)"}
          width={"100%"}
          patientsummarychart={
             <Chart

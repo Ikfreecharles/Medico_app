@@ -4,19 +4,19 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
 //import from external libraries
-import ViewAllButton from "./ViewAllButton.component";
+// import ViewAllButton from "./ViewAllButton.component";
 
 const CardContainer = styled.div`
    background-color: ${(props) => props.backgroundcolor};
    width: ${(props) => props.width};
-   padding: 2rem;
-   border-radius: 3px;
+   padding: 2rem 0 2rem 2rem;
+   border-radius: var(--border-radius);
    position: relative;
    color: ${(props) => props.textcolor};
 `;
 
 const Title = styled.h2`
-   font-size: 2.5rem;
+   font-size: 2rem;
    padding: 0;
    margin: 0;
    font-weight: 600;
@@ -33,7 +33,7 @@ const Subtitle = styled.p`
 const ChangeDiv = styled.div`
    display: flex;
    align-items: center;
-   margin: 0.5rem 0;
+   color: #c2c2c2;
 `;
 
 const ChangeInfo = styled.p`
@@ -42,7 +42,7 @@ const ChangeInfo = styled.p`
 `;
 
 const IconContainer = styled.div`
-   width: 3.5rem;
+   min-width: 3.5rem;
    height: 3.5rem;
    border-radius: 50%;
    background-color: ${(props) => props.iconcolor};
@@ -71,7 +71,7 @@ const Cards = ({
    width,
    changeInfo,
    changeDirection,
-   link,
+
    iconcolor,
 }) => {
    return (
@@ -90,12 +90,15 @@ const Cards = ({
                <ChangeDiv>
                   {changeDirection === 1 && (
                      <TrendingUpIcon
-                        style={{ color: "#9CD5AD", fontSize: "1.8rem" }}
+                        style={{
+                           color: "var(--main-green)",
+                           fontSize: "1.8rem",
+                        }}
                      />
                   )}
                   {changeDirection === 0 && (
                      <TrendingDownIcon
-                        style={{ color: "#DA615C", fontSize: "1.8rem" }}
+                        style={{ color: "var(--main-red)", fontSize: "1.8rem" }}
                      />
                   )}
                   <ChangeInfo>{changeInfo}</ChangeInfo>
@@ -105,9 +108,9 @@ const Cards = ({
 
          {/* <ViewAllButtonContainer>
             <ViewAllButton
-               color={"#fff"}
+               color={"var(--main-white)"}
                link={link}
-               backgroundcolor={"#1A55FF"}
+               backgroundcolor={"var(--main-blue)"}
                text={"View all".toUpperCase()}
                icon={true}
             />

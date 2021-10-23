@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const DetailContainer = styled.div`
-   margin-bottom: 2rem;
+   margin: 0 0.5rem 2rem 0;
+   width: 180px;
 `;
 
 const DetailHeading = styled.h3`

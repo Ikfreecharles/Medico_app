@@ -9,9 +9,9 @@ import DashboardInboxpreview from "./Dashboard-PanePreview/Dashboard.inboxprevie
 import DashboardNotificationspreview from "./Dashboard-PanePreview/Dashboard.notificationspreview";
 
 const DashboardInboxContainer = styled.section`
-   background-color: #fff;
-   border-radius: 0px;
-   border: 1px solid #eee;
+   background-color: var(--main-white);
+   border-radius: var(--border-radius);
+   margin-top: 0.8rem;
 `;
 
 const submenu = [
@@ -30,7 +30,6 @@ const DashboardInbox = () => {
                width={"100%"}
                setState={setsubmenuTitle}
             />
-            <div style={{ margin: "0.5rem 0" }}></div>
          </div>
          {submenuTitle === submenu[0].id && <DashboardInboxpreview />}
          {submenuTitle === submenu[1].id && <DashboardAppointmentpreview />}

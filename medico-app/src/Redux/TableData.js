@@ -1,6 +1,7 @@
 export const tableData = [
    {
-      Patient: "Esther Howard",
+      id: 1,
+      Patient: { Patient: "Esther Howard", Useravatar: "/images/Cameron.png" },
       Age: 25,
       "Admitted Date": "10 Oct, 2021",
       Status: 100,
@@ -10,7 +11,11 @@ export const tableData = [
       Test: 100,
    },
    {
-      Patient: "Cameron Williamson",
+      id: 2,
+      Patient: {
+         Patient: "Cameron Williamson",
+         Useravatar: "/images/Albert.png",
+      },
       Age: 45,
       "Admitted Date": "08 Oct, 2021",
       Status: 20,
@@ -20,7 +25,8 @@ export const tableData = [
       Test: 84,
    },
    {
-      Patient: "Jenny Wilson",
+      id: 3,
+      Patient: { Patient: "Jenny Wilson", Useravatar: "/images/Floyd.png" },
       Age: 32,
       "Admitted Date": "30 Sept, 2021",
       Status: 34,
@@ -30,7 +36,8 @@ export const tableData = [
       Test: 67,
    },
    {
-      Patient: "Jacob Jones",
+      id: 4,
+      Patient: { Patient: "Jacob Jones", Useravatar: "/images/Arlene.png" },
       Age: 39,
       "Admitted Date": "24 Aug, 2021",
       Status: 100,

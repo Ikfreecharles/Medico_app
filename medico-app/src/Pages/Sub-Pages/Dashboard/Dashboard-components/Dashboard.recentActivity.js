@@ -5,37 +5,40 @@ import ViewAllButton from "../../../../Components/Dashboard-Component/ViewAllBut
 import { ActivityData } from "../../../../Redux/Activity.data";
 
 const DashboardRecentActivityContainer = styled.section`
-   background-color: #fff;
-
+   background-color: var(--main-white);
    padding: 1.5rem;
-   margin-bottom: 2rem;
-   border: 1px solid #eee;
+   margin: 0.8rem 0;
+   border-radius: var(--border-radius);
 `;
 const ViewAllButtonContainer = styled.div`
-   margin-top: 13px;
+   margin-top: 1rem;
    display: flex;
-   justify-content: right;
+   justify-content: center;
 `;
 
 const DashboardRecentActivity = () => {
    return (
       <DashboardRecentActivityContainer>
-         <Titles title={"Recent Activities"} color={"#009CF4"} />
+         <Titles title={"Recent Activities"} color={"#479FDA"} />
          {ActivityData.map((activities) => {
-            const { id, activitySummary, activityDate } = activities;
+            const { id, activitySummary, activityDate, activityType } =
+               activities;
             return (
                <ActivityFeed
                   key={id}
                   activitysummary={activitySummary}
                   activitydate={activityDate}
+                  activityType={activityType}
                />
             );
          })}
          <ViewAllButtonContainer>
             <ViewAllButton
-               color={"#fff"}
-               link={"/"}
-               backgroundcolor={"#396CFF"}
+               color={"var(--main-white)"}
+               link={"Appointments"}
+               backgroundcolor={"var(--main-blue)"}
+               text={"View all".toUpperCase()}
+               icon={true}
             />
          </ViewAllButtonContainer>
       </DashboardRecentActivityContainer>

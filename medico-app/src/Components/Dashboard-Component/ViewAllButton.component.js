@@ -18,6 +18,10 @@ const ViewAllButtonContainer = styled.button`
    border: 1px solid #000;
    background: none;
    `}
+
+   p {
+      color: ${(props) => props.color};
+   }
 `;
 
 const ViewAllButton = ({
@@ -28,7 +32,7 @@ const ViewAllButton = ({
    icon,
    outline,
 }) => {
-   return (
+   return link ? (
       <Link to={`/${link}`}>
          <ViewAllButtonContainer
             color={color}
@@ -39,6 +43,15 @@ const ViewAllButton = ({
             {icon && <ArrowRightAltRoundedIcon />}
          </ViewAllButtonContainer>
       </Link>
+   ) : (
+      <ViewAllButtonContainer
+         color={color}
+         backgroundcolor={backgroundcolor}
+         outline={outline}
+      >
+         <p style={{ margin: "0" }}>{text}</p>
+         {icon && <ArrowRightAltRoundedIcon />}
+      </ViewAllButtonContainer>
    );
 };
 

@@ -26,12 +26,6 @@ const SideBarContainer = styled.section`
 //100% will make the maincontainer fill the available view #fafbff
 const MainViewContainer = styled.section`
    width: 100%;
-   ${(props) =>
-      props.title === "Patients" &&
-      `
-      height: 100vh;
-      overflow: hidden !important;
-   `}
 
    @media only screen and (max-width: 500px) {
       overflow: none;
@@ -41,6 +35,12 @@ const MainViewContainer = styled.section`
 
 const TopBarContainer = styled.div`
    min-height: 15vh;
+   position: -webkit-sticky;
+   position: sticky;
+   top: 0;
+   z-index: 999;
+   background-color: var(--background-color);
+   padding-bottom: 0.8rem;
 
    @media only screen and (max-width: 500px) {
       display: block;
@@ -64,7 +64,7 @@ const Home = () => {
          style={{
             display: "flex",
             justifyContent: "space-between",
-            backgroundColor: "#FAFBFF",
+            backgroundColor: "#F2F7FF",
          }}
       >
          <SideBarContainer>
@@ -78,6 +78,7 @@ const Home = () => {
                      display: "flex",
                      alignItems: "center",
                      justifyContent: "space-between",
+                     marginTop: "0.8rem",
                   }}
                >
                   <HamburgerAndHeading heading={title} />

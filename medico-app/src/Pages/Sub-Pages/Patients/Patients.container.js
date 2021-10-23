@@ -1,5 +1,4 @@
 //imports external libraries
-import { Route, useRouteMatch } from "react-router";
 import { Grid } from "semantic-ui-react";
 import styled from "styled-components";
 import PatientsCareplan from "./Patients-components/Patients.careplan";
@@ -10,44 +9,55 @@ import PatientsPatients from "./Patients-components/Patients.patients";
 import PatientsVitals from "./Patients-components/Patients.vitals";
 
 const PatientOuterContainer = styled.section`
-   padding: 0.5rem 0;
-   height: 85vh;
+   padding: 0 0 0.4rem 0;
 `;
+
+const PatientDiv = styled.div`
+   position: -webkit-sticky;
+   position: sticky;
+   top: 10rem;
+   height: 83vh;
+   overflow: auto;
+   visibility: hidden;
+   &:hover: {
+      visibility: visible;
+   }
+
+   div {
+      visibility: visible;
+   }
+`;
+
 const gridColumStyle = {
    padding: "0.4rem",
-   height: "100%",
 };
 
 const Patients = () => {
-   let { url } = useRouteMatch();
-   console.log(url);
    return (
       <PatientOuterContainer>
          <Grid columns={3} style={{ margin: "0", height: "100%" }}>
-            <Grid.Column
-               mobile={16}
-               tablet={5}
-               computer={5}
-               style={gridColumStyle}
-            >
-               <PatientsPatients />
-            </Grid.Column>
             <Grid.Column
                mobile={16}
                tablet={4}
                computer={4}
                style={gridColumStyle}
             >
-               <PatientsFulldetails />
+               <PatientDiv>
+                  <div>
+                     <PatientsPatients />
+                  </div>
+               </PatientDiv>
             </Grid.Column>
+
             <Grid.Column
                mobile={16}
-               tablet={7}
-               computer={7}
+               tablet={12}
+               computer={12}
                style={gridColumStyle}
             >
-               <Route path={url} component={PatientsVitals} />
-               <Route path={url} component={PatientsCareplan} />
+               <PatientsFulldetails />
+               <PatientsVitals />
+               <PatientsCareplan />
             </Grid.Column>
          </Grid>
       </PatientOuterContainer>

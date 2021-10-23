@@ -7,7 +7,6 @@ import { useState } from "react";
 import styled from "styled-components";
 
 //imports from withint the project
-import "../../../src/index.css";
 
 const SelectFilterContainer = styled.div`
    width: 120px;

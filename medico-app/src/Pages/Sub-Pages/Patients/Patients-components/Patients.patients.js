@@ -3,17 +3,15 @@ import { useState } from "react";
 import styled from "styled-components";
 
 //imports from with the project
-import SearchField from "../../../../Components/Dashboard-Component/Search.component";
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
-import TableComponent from "../../../../Components/Dashboard-Component/Table.component";
 import Titles from "../../../../Components/Dashboard-Component/Titles.component";
 import { PatientData } from "../../../../Redux/Patient.data";
 import PatientsAll from "./Patients-patients/Patients.all";
 
 const PatientsPatientsContainer = styled.section`
    padding: 2rem;
-   background-color: #fff;
-   border-radius: 1rem;
+   background-color: var(--main-white);
+   border-radius: var(--border-radius);
    height: 100%;
    overflow-y: auto;
 `;
@@ -41,8 +39,7 @@ const PatientsPatients = () => {
             setState={setSubmenuTitle}
          />
          <TitleSearchDiv>
-            <Titles title={"All Patient"} color={"#306EF6"} />
-            <SearchField />
+            <Titles title={"All Patient"} color={"var(--main-blue)"} />
          </TitleSearchDiv>
          {submenuTitle === submenu[0].id && (
             <PatientsAll patientData={PatientData} />

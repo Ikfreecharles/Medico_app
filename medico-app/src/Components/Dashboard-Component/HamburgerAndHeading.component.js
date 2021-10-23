@@ -12,7 +12,7 @@ const HamburgerAndHeadingContainer = styled.div`
 `;
 
 const Heading = styled.h1`
-   font-size: 2.8rem;
+   font-size: 2.2rem;
    font-weight: 700;
    letter-spacing: -0.7px;
    margin: 0;

@@ -8,17 +8,17 @@ const DatePickerStyle = styled.div`
    align-items: center;
 
    h4 {
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       margin: 0 1rem 0 0;
       color: #797979;
    }
 
    .datePickerStyle {
-      border-radius: 3px;
+      border-radius: 1rem;
       border: 1px solid #e8e8e8;
       font-family: "Work Sans" !important;
-      padding: 1rem;
-      font-size: 1.3rem;
+      padding: 0.5rem;
+      font-size: 1rem;
       cursor: pointer;
       color: #797979;
 

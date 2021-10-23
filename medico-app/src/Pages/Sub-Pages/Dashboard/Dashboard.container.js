@@ -8,7 +8,7 @@ import DashboardInbox from "./Dashboard-components/Dashboard.inbox";
 import DashboardAppointmentoverview from "./Dashboard-components/Dashboard.appointmentoverview";
 
 const DashboardOuterContainer = styled.section`
-   padding: 0.5rem 0rem;
+   padding: 0 0 0.4rem 0rem;
 `;
 
 const gridColumStyle = {
@@ -37,6 +37,7 @@ const Dashboard = () => {
                style={gridColumStyle}
             >
                <DashboardAppointmentoverview />
+               <DashboardRecentActivity />
                <DashboardInbox />
             </Grid.Column>
          </Grid>

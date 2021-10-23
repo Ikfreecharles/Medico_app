@@ -29,28 +29,33 @@ const MessagePreviewContainer = styled.div`
    width: 100%;
 `;
 
-const UserFullName = styled.h2`
+const UserFullName = styled.p`
    font-size: 1rem;
    margin: 0;
    letter-spacing: -0.3px;
    font-weight: 500;
+   ${(props) =>
+      props.newMessage &&
+      props.id`
+         font-weight: 700
+      `}
 `;
 
 const UserMessagePreview = styled.p`
    font-size: 0.8rem;
    margin: 0;
-   opacity: 0.17;
+   opacity: 0.4;
    ${(props) =>
       props.newMessage &&
       props.id`
-         opacity: 0;
+         opacity: 1;
+         font-weight: 700
       `}
 `;
 
 const MessageTime = styled.p`
-   font-size: 10px;
+   font-size: 0.8rem;
    opacity: 0.3;
-   font-style: italics;
 `;
 
 const UserChatCard = ({

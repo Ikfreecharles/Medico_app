@@ -1,0 +1,61 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"); */
+
+:root {
+   --main-blue: #479fda;
+   --main-font: "Trebuchet MS", "sans-serif";
+   --main-green: #00e2bb;
+   --main-orange: #ff942c;
+   --main-red: #ff362e;
+   --main-grey: #666666;
+   --main-lightgrey: #d7d7d7;
+   --main-black: #000;
+   --main-white: #fff;
+   --light-grey: #e8e8e8;
+   --sec-blue: #00d0e9;
+   --ter-blue: #306ef6;
+   --background-color: #f2f7ff;
+   --border-radius: 5px;
+   --main-fontsize: 11px;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+a {
+   text-decoration: none;
+   color: #000 !important;
+}
+
+html,
+body {
+   font-size: var(--main-fontsize) !important;
+   letter-spacing: 0 !important;
+   font-family: var(--main-font) !important;
+   overscroll-behavior: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+   font-family: var(--main-font) !important;
+   font-weight: 500;
+}
+
+::-webkit-scrollbar {
+   width: 6px;
+   border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+   background-color: #cccccc;
+   border-radius: 10px;
+}

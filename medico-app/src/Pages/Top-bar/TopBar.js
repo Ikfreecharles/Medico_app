@@ -2,20 +2,29 @@
 import styled from "styled-components";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import { useDispatch, useSelector } from "react-redux";
 
 //imports from within the project
 import Avatar from "../../Components/Dashboard-Component/Avatar.component";
 import { doctorImage } from "../../Redux/Image.profile";
 import SearchField from "../../Components/Dashboard-Component/Search.component";
 import ViewAllButton from "../../Components/Dashboard-Component/ViewAllButton.component";
+import {
+   openCreatePatientModal,
+   openMessage,
+   openNotification,
+   openProfileOption,
+} from "../../Redux/Top-bar/Topbar.actions";
+import ProfileModal from "./Modals/Profile.modal";
 
 const TopBarContainer = styled.section`
    display: flex;
    align-items: center;
    justify-content: right;
-
-   background-color: #fff;
+   border-radius: var(--border-radius);
+   background-color: var(--main-white);
    padding: 1rem 0;
+   position: relative;
 
    @media only screen and (max-width: 500px) {
       display: block;
@@ -46,7 +55,7 @@ const DoctorName = styled.h2`
 `;
 
 const ViewAllContainer = styled.div`
-   margin-right: 2rem;
+   margin-right: 1rem;
 
    @media only screen and (max-width: 500px) {
       display: none;
@@ -61,6 +70,9 @@ const IconContainer = styled.div`
    justify-content: center;
    background-color: #fff;
    margin-right: -1px;
+   svg {
+      cursor: pointer;
+   }
 `;
 const iconStyle = {
    fontSize: "2rem",
@@ -68,36 +80,57 @@ const iconStyle = {
 
 const AvatarDiv = styled.div`
    padding: 0 1rem;
+   cursor: pointer;
 `;
 
 function TopBar() {
+   const dispatch = useDispatch();
+   const openProfileOptions = useSelector(
+      (state) => state.topBar.openProfileOptions
+   );
    return (
       <TopBarContainer>
          <SearchField />
          <TimeBar>{new Date().toUTCString()}</TimeBar>
          <InnerContainer>
             <DoctorName>Welcome, Dr Savannah</DoctorName>
+            <ViewAllContainer
+               onClick={() => dispatch(openCreatePatientModal())}
+            >
+               <ViewAllButton
+                  color={"var(--main-white)"}
+                  backgroundcolor={"var(--main-green)"}
+                  text={"Create new patient".toLocaleUpperCase()}
+               />
+            </ViewAllContainer>
             <ViewAllContainer>
                <ViewAllButton
-                  color={"#fff"}
+                  color={"var(--main-white)"}
                   link={"Appointments"}
-                  backgroundcolor={"#306EF6"}
+                  backgroundcolor={"var(--main-blue)"}
                   text={"Make an appointment".toUpperCase()}
                />
             </ViewAllContainer>
             <IconContainer>
-               <NotificationsRoundedIcon style={iconStyle} />
+               <NotificationsRoundedIcon
+                  style={iconStyle}
+                  onClick={() => dispatch(openNotification())}
+               />
             </IconContainer>
             <IconContainer>
-               <EmailRoundedIcon style={iconStyle} />
+               <EmailRoundedIcon
+                  style={iconStyle}
+                  onClick={() => dispatch(openMessage())}
+               />
             </IconContainer>
-            <AvatarDiv>
+            <AvatarDiv onClick={() => dispatch(openProfileOption())}>
                <Avatar
                   dimension={"50px"}
                   backgroundimage={doctorImage.doctor}
                />
             </AvatarDiv>
          </InnerContainer>
+         {openProfileOptions && <ProfileModal />}
       </TopBarContainer>
    );
 }

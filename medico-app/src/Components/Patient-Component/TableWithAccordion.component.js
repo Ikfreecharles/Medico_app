@@ -1,13 +1,54 @@
+//imports from external libraries
 import { Component } from "react";
 import { Accordion, Icon } from "semantic-ui-react";
+import { LinearProgress } from "@mui/material";
+import styled from "styled-components";
+
+//imports from within the project
 import TableComponent from "../Dashboard-Component/Table.component";
 import { ActivitiesGoal } from "../../Redux/ActivitiesGoals.data";
 
 const tableStyling = {
-   fontFamily: "Work Sans",
+   fontFamily: "var(--main-font)",
+   color: "var(--main-grey)",
+   fontSize: "var(--main-fontsize)",
    fontWeight: "500",
-   paddingLeft: "0",
+   paddingRight: "1rem",
+   // display: "flex",
+   // alignItems: "center",
+   // justifyContent: "space-between",
 };
+
+const AccordianDiv = styled.section`
+   div {
+      .progress__div {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+      }
+      span {
+         border-radius: 10px;
+         background-color: var(--light-grey);
+         span {
+            ${(props) =>
+               props.progress < 40 &&
+               `
+            background-color: var(--main-red);
+            `}
+            ${(props) =>
+               props.progress >= 40 &&
+               `
+            background-color: var(--main-orange);
+            `}
+            ${(props) =>
+               props.progress > 70 &&
+               `
+            background-color: var(--main-green);
+            `}
+         }
+      }
+   }
+`;
 
 class TableWithAccordionComponent extends Component {
    state = { activeIndex: 0 };
@@ -27,21 +68,34 @@ class TableWithAccordionComponent extends Component {
             {ActivitiesGoal.map((activities) => {
                const { id, Activity, Progress, Goals } = activities;
                return (
-                  <div key={id}>
+                  <AccordianDiv key={id} progress={Progress}>
                      <Accordion.Title
                         onClick={this.handleClick}
                         index={id}
                         active={activeIndex === id}
                         style={tableStyling}
                      >
-                        <div>
-                           <Icon name="dropdown" /> {Activity} {Progress}
+                        <div className="progress__div">
+                           <div>
+                              <Icon name="dropdown" /> {Activity}
+                           </div>
+                           <div>
+                              {Progress >= 100
+                                 ? "Activity Completed"
+                                 : `${Progress}%`}
+                           </div>
                         </div>
+                        <LinearProgress
+                           variant="determinate"
+                           value={Progress}
+                        />
                      </Accordion.Title>
                      <Accordion.Content active={activeIndex === id}>
-                        <TableComponent tableData={Goals} />
+                        <div style={{ marginBottom: "2rem" }}>
+                           <TableComponent tableData={Goals} />
+                        </div>
                      </Accordion.Content>
-                  </div>
+                  </AccordianDiv>
                );
             })}
          </Accordion>

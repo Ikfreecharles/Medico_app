@@ -3,7 +3,7 @@ export const SingleUserDetails = {
    Name: "Alma Lawson",
    Dob: "June 2, 1994 (27 years)",
    Gender: "Female",
-   Man: "SD9212969",
+   PatientID: "SD9212969",
    Address: "2464 Royal Ln. Mesa, New Jersey 45463",
    PreferredCommunication: "+49 15712345 989",
    Language: ["English", "German", "Yoruba"],

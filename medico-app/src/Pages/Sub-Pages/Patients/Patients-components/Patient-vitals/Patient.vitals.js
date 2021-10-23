@@ -2,28 +2,18 @@
 import styled from "styled-components";
 
 //imports from within the project
-import Titles from "../../../../../Components/Dashboard-Component/Titles.component";
+
 import PatientVitalsCardComponent from "../../../../../Components/Patient-Component/PatientVitalsCard.component";
 import { SingleUserDetails } from "../../../../../Redux/SingleUserDetails";
 
-const vitaltypecolor = "#306EF6";
-
-const VitalsTitleContainer = styled.div`
-   margin-bottom: 2rem;
-`;
-
 const VitalCardContainer = styled.div`
    display: flex;
-   justify-content: space-between;
 `;
 
-const PatientVitalCareplan = () => {
+const PatientVitals = () => {
    const { Vitals } = SingleUserDetails;
    return (
       <>
-         <VitalsTitleContainer>
-            <Titles title={"Vitals"} color={"#306EF6"} />
-         </VitalsTitleContainer>
          <VitalCardContainer>
             {Vitals.map((vital) => {
                const {
@@ -41,7 +31,7 @@ const PatientVitalCareplan = () => {
                      vitalicon={icon}
                      vitaltype={vitalType}
                      vitalnumber={vitalNumber}
-                     vitaltypecolor={vitaltypecolor}
+                     vitaltypecolor={"var(--main-blue)"}
                      unit={unit}
                      changeInfo={changeInfo}
                      changeDirection={changeDirection}
@@ -53,4 +43,4 @@ const PatientVitalCareplan = () => {
    );
 };
 
-export default PatientVitalCareplan;
+export default PatientVitals;

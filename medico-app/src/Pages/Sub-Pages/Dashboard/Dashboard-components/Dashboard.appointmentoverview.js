@@ -11,9 +11,8 @@ import AppointmentWeekly from "./Dashboard-appointmentoverview/Appointment.weekl
 import AppointmentYearly from "./Dashboard-appointmentoverview/Appointment.yearly";
 
 const DashboardAppointmentOverviewContainer = styled.section`
-   background-color: #fff;
-   border-radius: 3px;
-   border: 1px solid #eee;
+   background-color: var(--main-white);
+   border-radius: var(--border-radius);
    padding: 1rem;
 `;
 
@@ -33,7 +32,7 @@ const DashboardAppointmentoverview = () => {
 
    return (
       <DashboardAppointmentOverviewContainer>
-         <Titles title={"Appointment Overview"} color={"#306EF6"} />
+         <Titles title={"Appointment Overview"} color={"#479FDA"} />
          <SubmenuContainer>
             <Submenu
                submenulist={submenu}

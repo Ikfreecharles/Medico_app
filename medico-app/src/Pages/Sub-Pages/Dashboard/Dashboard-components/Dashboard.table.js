@@ -10,11 +10,10 @@ import TableComponent from "../../../../Components/Dashboard-Component/Table.com
 import SelectFilterComponent from "../../../../Components/Dashboard-Component/SelectFilter.component";
 
 const DashboardContainer = styled.div`
-   background-color: #fff;
+   background-color: var(--main-white);
    padding: 2rem;
-
-   margin-top: 2rem;
-   border: 1px solid #eee;
+   margin-top: 0.8rem;
+   border-radius: var(--border-radius);
 `;
 
 const HeaderContainer = styled.div`
@@ -38,20 +37,22 @@ const DashboardTableContainer = () => {
    return (
       <DashboardContainer>
          <HeaderContainer>
-            <Titles title={"Your Patients"} color={"#009CF4"} />
+            <Titles title={"Your Patients"} color={"var(--main-blue)"} />
             <SearchFieldContainer>
                <SearchField style={{ paddingRight: "40px" }} />
                <SelectFilterComponent options={diagnosis} label={"Diagnosis"} />
                <ViewAllButton
-                  color={"#fff"}
+                  color={"var(--main-white)"}
                   link={"Patients"}
-                  backgroundcolor={"#396CFF"}
+                  backgroundcolor={"var(--main-blue)"}
                   text={"View all".toUpperCase()}
                   icon={true}
                />
             </SearchFieldContainer>
          </HeaderContainer>
-         <TableComponent tableData={tableData} />
+         <div style={{ marginTop: "2rem" }}>
+            <TableComponent tableData={tableData} />
+         </div>
       </DashboardContainer>
    );
 };

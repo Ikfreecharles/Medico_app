@@ -13,6 +13,8 @@ const SideBarTitle = styled.section`
    height: 100vh;
    padding-top: 60px;
    cursor: pointer;
+   position: sticky;
+   top: 0;
 `;
 
 const OuterContainer = styled.div`

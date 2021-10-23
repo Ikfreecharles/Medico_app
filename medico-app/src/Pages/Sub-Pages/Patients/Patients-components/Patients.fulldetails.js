@@ -4,13 +4,24 @@ import Titles from "../../../../Components/Dashboard-Component/Titles.component"
 import { SingleUserDetails } from "../../../../Redux/SingleUserDetails";
 import styled from "styled-components";
 
-const headingcolor = "#306EF6";
+const headingcolor = "var(--main-lightgrey)";
+const bodycolor = "var(--main-blue)";
+
 const PatientFullDetailsContainer = styled.section`
+   border-radius: var(--border-radius);
+   background-color: var(--main-white);
+   height: auto;
+   margin-bottom: 0.8rem;
    padding: 2rem;
-   border-radius: 1rem;
-   background-color: #fff;
-   height: 100%;
-   overflow-y: auto;
+`;
+
+const DetailsDivContainer = styled.div`
+   margin: 2rem 0 0 0;
+`;
+
+const UserDetailsDiv = styled.div`
+   display: flex;
+   flex-wrap: wrap;
 `;
 
 const PatientsFulldetails = () => {
@@ -19,7 +30,7 @@ const PatientsFulldetails = () => {
       Name,
       Dob,
       Gender,
-      Man,
+      PatientID,
       Address,
       PreferredCommunication,
       Language,
@@ -40,59 +51,73 @@ const PatientsFulldetails = () => {
 
    return (
       <PatientFullDetailsContainer>
-         <Titles title={"About Patient"} color={"#396CFF"} />
-         <UserAvatarDetails
-            useravatar={userAvatar}
-            fullname={Name}
-            age={Dob}
-            gender={Gender}
-            namecolor={"#797979"}
-         />
-         <UserDetails
-            userheading={"MAN"}
-            userbody={Man}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Address"}
-            userbody={Address}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Preferred Communication"}
-            userbody={PreferredCommunication}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Language"}
-            userbody={listArray(Language)}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Insurance"}
-            userbody={listObject(Insurance)}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Conditions"}
-            userbody={listArray(Conditions)}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Medications"}
-            userbody={listArray(Medications)}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Allergies"}
-            userbody={listArray(Allergies)}
-            headingcolor={headingcolor}
-         />
-         <UserDetails
-            userheading={"Last Appointment"}
-            userbody={LastAppointment}
-            headingcolor={headingcolor}
-         />
+         <Titles title={"About Patient"} color={"var(--main-blue)"} />
+         <DetailsDivContainer>
+            <UserAvatarDetails
+               useravatar={userAvatar}
+               fullname={Name}
+               age={Dob}
+               gender={Gender}
+               namecolor={"var(--main-grey)"}
+               userdetailscolor={"var(--main-grey)"}
+            />
+            <UserDetailsDiv>
+               <UserDetails
+                  userheading={"Patient ID"}
+                  userbody={PatientID}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Address"}
+                  userbody={Address}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Preferred Communication"}
+                  userbody={PreferredCommunication}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Language"}
+                  userbody={listArray(Language)}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Insurance"}
+                  userbody={listObject(Insurance)}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Conditions"}
+                  userbody={listArray(Conditions)}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Medications"}
+                  userbody={listArray(Medications)}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Allergies"}
+                  userbody={listArray(Allergies)}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+               <UserDetails
+                  userheading={"Last Appointment"}
+                  userbody={LastAppointment}
+                  headingcolor={headingcolor}
+                  bodycolor={bodycolor}
+               />
+            </UserDetailsDiv>
+         </DetailsDivContainer>
       </PatientFullDetailsContainer>
    );
 };

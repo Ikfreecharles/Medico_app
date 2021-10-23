@@ -1,8 +1,8 @@
 export const pieChartOptions = {
    pieHole: 0.9,
    chartArea: { left: 0, top: 0, width: "100%", height: "85%" },
-   colors: ["#2b63dd", "#457df7", "#6e9af9", "#98b7fb"],
-   fontSize: "12",
-   fontName: "Work Sans",
+   colors: ["#479FDA", "#00E2BB", "#00D0E9", "#306ef6"],
+   fontSize: "11",
+   fontName: "Trebuchet MS",
    legend: { position: "bottom", alignment: "center" },
 };

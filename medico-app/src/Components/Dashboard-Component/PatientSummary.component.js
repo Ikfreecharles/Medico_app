@@ -8,7 +8,7 @@ import Titles from "./Titles.component";
 const PatientSummaryContainer = styled.div`
    width: ${(props) => props.width};
    background: ${(props) => props.backgroundcolor};
-   border-radius: 3px;
+   border-radius: var(--border-radius);
    padding: 2rem;
    height: 400px;
    div {

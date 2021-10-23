@@ -3,7 +3,9 @@ import styled from "styled-components";
 const UserAvatarDetailsContainer = styled.div`
    display: flex;
    align-items: center;
-   margin: 3rem 0;
+   margin: 3rem 0 1.5rem 0;
+   padding: 0 0 1.5rem 0;
+   border-bottom: 1px solid var(--light-grey);
 `;
 
 const UserAvatar = styled.img`

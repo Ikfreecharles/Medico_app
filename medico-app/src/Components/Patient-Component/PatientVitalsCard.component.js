@@ -2,7 +2,12 @@ import styled from "styled-components";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
-const PatientVitalComponentContainer = styled.div``;
+const PatientVitalComponentContainer = styled.div`
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-right: 4rem;
+`;
 
 const VitalIconContainer = styled.div`
    height: 3rem;
@@ -20,7 +25,7 @@ const VitalType = styled.p`
 
 const VitalNumber = styled.p`
    font-size: 2rem;
-   color: #306ef6;
+   color: #479fda;
    margin: 0;
    line-height: 1.1;
    font-weight: 500;
@@ -29,11 +34,12 @@ const VitalNumber = styled.p`
 const ChangeContainer = styled.div`
    display: flex;
    align-items: center;
+   justify-content: center;
    margin-top: 0.5rem;
 `;
 
 const ChangeInfo = styled.p`
-   color: #d2d2d2;
+   color: var(--main-lightgrey);
    font-size: 0.8rem;
    padding-left: 0.5rem;
    width: 60%;
@@ -63,12 +69,12 @@ const PatientVitalsCardComponent = ({
          <ChangeContainer>
             {changeDirection === 1 && (
                <TrendingUpIcon
-                  style={{ color: "#9CD5AD", fontSize: "1.6rem" }}
+                  style={{ color: "var(--main-green)", fontSize: "1.6rem" }}
                />
             )}
             {changeDirection === 0 && (
                <TrendingDownIcon
-                  style={{ color: "#DA615C", fontSize: "1.6rem" }}
+                  style={{ color: "var(--main-red)", fontSize: "1.6rem" }}
                />
             )}
             <ChangeInfo>{changeInfo}</ChangeInfo>

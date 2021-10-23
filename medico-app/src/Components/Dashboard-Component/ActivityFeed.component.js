@@ -1,8 +1,12 @@
+//imports from external libraries
 import { Feed } from "semantic-ui-react";
+import Chip from "@mui/material/Chip";
+import ChipComponent from "./Chip.component";
 
 const feedSummary = {
    marginBottom: "0.5rem",
-   color: "#797979",
+   color: "var(--main-grey)",
+   fontWeight: "500",
 };
 
 const feedContent = {
@@ -10,7 +14,7 @@ const feedContent = {
    paddingBottom: "1rem",
 };
 
-const ActivityFeed = ({ activitysummary, activitydate }) => {
+const ActivityFeed = ({ activitysummary, activitydate, activityType }) => {
    return (
       <Feed>
          <Feed.Event>
@@ -19,6 +23,15 @@ const ActivityFeed = ({ activitysummary, activitydate }) => {
                   {activitysummary}
                </Feed.Summary>
                <Feed.Date>{activitydate}</Feed.Date>
+               {activityType.map((type) => {
+                  const { marker, activityType } = type;
+                  return (
+                     <ChipComponent
+                        chiptext={activityType}
+                        chipcolor={marker}
+                     />
+                  );
+               })}
             </Feed.Content>
          </Feed.Event>
       </Feed>

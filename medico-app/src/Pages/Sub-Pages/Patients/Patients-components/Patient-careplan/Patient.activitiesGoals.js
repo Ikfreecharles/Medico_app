@@ -5,7 +5,7 @@ import styled from "styled-components";
 import TableWithAccordionComponent from "../../../../../Components/Patient-Component/TableWithAccordion.component";
 
 const PatientActivitiesGoalsContainer = styled.div`
-   height: 50%;
+   height: 70%;
    overflow-y: scroll;
 `;
 

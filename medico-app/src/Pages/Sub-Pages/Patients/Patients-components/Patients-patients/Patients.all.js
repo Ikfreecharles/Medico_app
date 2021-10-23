@@ -2,7 +2,11 @@ import TableComponent from "../../../../../Components/Dashboard-Component/Table.
 import { PatientData } from "../../../../../Redux/Patient.data";
 
 const PatientAll = () => {
-   return <TableComponent tableData={PatientData} />;
+   return (
+      <div style={{ marginTop: "2rem" }}>
+         <TableComponent tableData={PatientData} />
+      </div>
+   );
 };
 
 export default PatientAll;

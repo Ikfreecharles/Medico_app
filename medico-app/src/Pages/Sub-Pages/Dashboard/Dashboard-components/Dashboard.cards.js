@@ -34,8 +34,8 @@ const DashboardCardsContainer = () => {
                      title={total}
                      subtitle={subtitle}
                      icon={icon}
-                     backgroundcolor={"#fff"}
-                     textcolor={"#000"}
+                     backgroundcolor={"var(--main-white)"}
+                     textcolor={"var(--main-grey)"}
                      width={width}
                      changeInfo={changeInfo}
                      changeDirection={changeDirection}
