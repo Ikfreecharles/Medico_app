@@ -7,15 +7,23 @@ import "semantic-ui-css/semantic.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./Redux/Store";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+const client = new ApolloClient({
+   uri: "http://localhost:3001/graphql",
+   cache: new InMemoryCache(),
+});
 
 ReactDOM.render(
-   <Provider store={store}>
-      <React.StrictMode>
-         <BrowserRouter>
-            <App />
-         </BrowserRouter>
-      </React.StrictMode>
-   </Provider>,
+   <ApolloProvider client={client}>
+      <Provider store={store}>
+         <React.StrictMode>
+            <BrowserRouter>
+               <App />
+            </BrowserRouter>
+         </React.StrictMode>
+      </Provider>
+   </ApolloProvider>,
    document.getElementById("root")
 );
 

@@ -23,15 +23,16 @@ const ActivityFeed = ({ activitysummary, activitydate, activityType }) => {
                   {activitysummary}
                </Feed.Summary>
                <Feed.Date>{activitydate}</Feed.Date>
-               {activityType.map((type) => {
-                  const { marker, activityType } = type;
-                  return (
-                     <ChipComponent
-                        chiptext={activityType}
-                        chipcolor={marker}
-                     />
-                  );
-               })}
+               {activityType &&
+                  activityType.map((type) => {
+                     const { marker, activityType } = type;
+                     return (
+                        <ChipComponent
+                           chiptext={activityType}
+                           chipcolor={marker}
+                        />
+                     );
+                  })}
             </Feed.Content>
          </Feed.Event>
       </Feed>

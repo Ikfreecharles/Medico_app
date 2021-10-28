@@ -66,7 +66,8 @@ class TableWithAccordionComponent extends Component {
       return (
          <Accordion>
             {ActivitiesGoal.map((activities) => {
-               const { id, Activity, Progress, Goals } = activities;
+               const { id, Activity, ActivitySince, Progress, Goals } =
+                  activities;
                return (
                   <AccordianDiv key={id} progress={Progress}>
                      <Accordion.Title
@@ -79,6 +80,7 @@ class TableWithAccordionComponent extends Component {
                            <div>
                               <Icon name="dropdown" /> {Activity}
                            </div>
+
                            <div>
                               {Progress >= 100
                                  ? "Activity Completed"
@@ -89,6 +91,9 @@ class TableWithAccordionComponent extends Component {
                            variant="determinate"
                            value={Progress}
                         />
+                        <div style={{ color: "var(--main-lightgrey)" }}>
+                           Started: {ActivitySince}
+                        </div>
                      </Accordion.Title>
                      <Accordion.Content active={activeIndex === id}>
                         <div style={{ marginBottom: "2rem" }}>

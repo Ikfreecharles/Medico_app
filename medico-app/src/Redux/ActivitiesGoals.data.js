@@ -2,6 +2,7 @@ export const ActivitiesGoal = [
    {
       id: "0",
       Activity: "Blood Glucose Control",
+      ActivitySince: "24 Nov, 2020",
       Progress: 49,
       Goals: [
          {
@@ -23,6 +24,7 @@ export const ActivitiesGoal = [
    {
       id: "1",
       Activity: "Lifestyle Changes",
+      ActivitySince: "24 Nov, 2020",
       Progress: 68,
       Goals: [
          {
@@ -38,6 +40,7 @@ export const ActivitiesGoal = [
    {
       id: "2",
       Activity: "Sound Sleep",
+      ActivitySince: "24 Nov, 2020",
       Progress: 68,
       Goals: [
          {
@@ -52,6 +55,7 @@ export const ActivitiesGoal = [
    {
       id: "3",
       Activity: "Communicate with Stranger",
+      ActivitySince: "24 Nov, 2020",
       Progress: 84,
       Goals: [
          {
@@ -66,6 +70,7 @@ export const ActivitiesGoal = [
    {
       id: "4",
       Activity: "Jogging 30 mins",
+      ActivitySince: "24 Nov, 2020",
       Progress: 55,
       Goals: [
          {
@@ -80,6 +85,7 @@ export const ActivitiesGoal = [
    {
       id: "5",
       Activity: "Ride Bike for 45 mins",
+      ActivitySince: "24 Nov, 2020",
       Progress: 25,
       Goals: [
          {
@@ -94,6 +100,7 @@ export const ActivitiesGoal = [
    {
       id: "6",
       Activity: "Stop Fornicating",
+      ActivitySince: "24 Nov, 2020",
       Progress: 10,
       Goals: [
          {
@@ -108,6 +115,7 @@ export const ActivitiesGoal = [
    {
       id: "7",
       Activity: "Listen to music 30 mins",
+      ActivitySince: "24 Nov, 2020",
       Progress: 100,
       Goals: [
          {
@@ -122,6 +130,7 @@ export const ActivitiesGoal = [
    {
       id: "8",
       Activity: "Meditate for 30 mins",
+      ActivitySince: "24 Nov, 2020",
       Progress: 40,
       Goals: [
          {
@@ -136,6 +145,7 @@ export const ActivitiesGoal = [
    {
       id: "9",
       Activity: "Stretching the body",
+      ActivitySince: "24 Nov, 2020",
       Progress: 80,
       Goals: [
          {

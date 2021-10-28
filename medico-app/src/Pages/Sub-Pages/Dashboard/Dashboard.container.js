@@ -1,11 +1,15 @@
+//imports from external libraries
 import styled from "styled-components";
 import { Grid } from "semantic-ui-react";
+
+//imports from within the project
 import DashboardCardsContainer from "./Dashboard-components/Dashboard.cards";
 import DashboardTableContainer from "./Dashboard-components/Dashboard.table";
 import DashboardOverview from "./Dashboard-components/Dashboard.overview";
 import DashboardRecentActivity from "./Dashboard-components/Dashboard.recentActivity";
 import DashboardInbox from "./Dashboard-components/Dashboard.inbox";
 import DashboardAppointmentoverview from "./Dashboard-components/Dashboard.appointmentoverview";
+import DashboardTodayoverview from "./Dashboard-components/Dashboard.todayoverview";
 
 const DashboardOuterContainer = styled.section`
    padding: 0 0 0.4rem 0rem;
@@ -27,6 +31,7 @@ const Dashboard = () => {
                style={gridColumStyle}
             >
                <DashboardOverview />
+               <DashboardTodayoverview />
                <DashboardTableContainer />
             </Grid.Column>
 

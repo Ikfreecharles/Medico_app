@@ -8,6 +8,7 @@ import DatepickerComponent from "../../Components/Dashboard-Component/Datepicker
 //import from with the project
 import HamburgerAndHeading from "../../Components/Dashboard-Component/HamburgerAndHeading.component";
 import { topbarTitleChange } from "../../Redux/Top-bar/Topbar.actions";
+import Appointment from "../Sub-Pages/Appointments/Appointment.container";
 import Dashboard from "../Sub-Pages/Dashboard/Dashboard.container";
 import Patients from "../Sub-Pages/Patients/Patients.container";
 import SideBar from "../Sub-Pages/Side-bar/SideBar";
@@ -91,6 +92,7 @@ const Home = () => {
                </Route>
                <Route path="/dashboard" component={Dashboard} />
                <Route path="/patients" component={Patients} />
+               <Route path="/appointments" component={Appointment} />
             </Switch>
          </MainViewContainer>
       </section>

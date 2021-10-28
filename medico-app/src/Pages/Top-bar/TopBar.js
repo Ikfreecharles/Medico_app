@@ -16,6 +16,7 @@ import {
    openProfileOption,
 } from "../../Redux/Top-bar/Topbar.actions";
 import ProfileModal from "./Modals/Profile.modal";
+import NotificationModal from "./Modals/Notification.modal";
 
 const TopBarContainer = styled.section`
    display: flex;
@@ -88,6 +89,9 @@ function TopBar() {
    const openProfileOptions = useSelector(
       (state) => state.topBar.openProfileOptions
    );
+   const openNotifications = useSelector(
+      (state) => state.topBar.openNotification
+   );
    return (
       <TopBarContainer>
          <SearchField />
@@ -131,6 +135,7 @@ function TopBar() {
             </AvatarDiv>
          </InnerContainer>
          {openProfileOptions && <ProfileModal />}
+         {openNotifications && <NotificationModal />}
       </TopBarContainer>
    );
 }

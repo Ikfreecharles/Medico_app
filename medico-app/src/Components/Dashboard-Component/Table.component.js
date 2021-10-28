@@ -88,7 +88,7 @@ const TableComponent = ({ tableData }) => {
       ProgressBar,
       styling
    ) => {
-      if (heading === "Test" || heading === "Status") {
+      if (heading === "test" || heading === "status") {
          return (
             <Box sx={{ position: "relative", display: "inline-flex" }}>
                <Pie
@@ -137,7 +137,7 @@ const TableComponent = ({ tableData }) => {
             </div>
          );
       }
-      if (heading === "Recovery") {
+      if (heading === "recovery") {
          return (
             <ProgressBar
                variant="determinate"
@@ -149,7 +149,7 @@ const TableComponent = ({ tableData }) => {
             />
          );
       }
-      if (heading === "Examination" || heading === "Priority") {
+      if (heading === "examination" || heading === "Priority") {
          return (
             <p
                style={
@@ -162,7 +162,7 @@ const TableComponent = ({ tableData }) => {
                      : ""
                }
             >
-               {item.item || item.Priority}
+               {item.examination || item.Priority}
             </p>
          );
       } else {
@@ -178,7 +178,9 @@ const TableComponent = ({ tableData }) => {
                   <TableHead>
                      <TableRow>
                         {Object.keys(tableData.at(0))
-                           .filter((item) => item !== "id")
+                           .filter(
+                              (item) => item !== "id" && item !== "__typename"
+                           )
                            .map((patient) => (
                               <TableCell sx={tableStyle}>{patient}</TableCell>
                            ))}
@@ -194,7 +196,10 @@ const TableComponent = ({ tableData }) => {
                            return (
                               <TableRow hover key={patient.id}>
                                  {Object.keys(tableData.at(0))
-                                    .filter((item) => item !== "id")
+                                    .filter(
+                                       (item) =>
+                                          item !== "id" && item !== "__typename"
+                                    )
                                     .map((heading) => {
                                        const item = patient[heading];
                                        return (

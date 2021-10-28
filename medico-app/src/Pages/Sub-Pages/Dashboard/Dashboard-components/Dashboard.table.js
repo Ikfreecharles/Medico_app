@@ -1,5 +1,6 @@
 //imports from external libraries
 import styled from "styled-components";
+import { useQuery } from "@apollo/client";
 
 //imports from within the project
 import { tableData } from "../../../../Redux/TableData";
@@ -8,6 +9,8 @@ import SearchField from "../../../../Components/Dashboard-Component/Search.compo
 import ViewAllButton from "../../../../Components/Dashboard-Component/ViewAllButton.component";
 import TableComponent from "../../../../Components/Dashboard-Component/Table.component";
 import SelectFilterComponent from "../../../../Components/Dashboard-Component/SelectFilter.component";
+import { GET_ALL_PATIENT } from "../../../../GraphQL/Queries.graphql";
+import { CircularProgress } from "@mui/material";
 
 const DashboardContainer = styled.div`
    background-color: var(--main-white);
@@ -34,6 +37,8 @@ const SearchFieldContainer = styled.div`
 const diagnosis = ["Influenza", "Covid-19", "Malaria", "Diahrreah"];
 
 const DashboardTableContainer = () => {
+   const { loading, error, data } = useQuery(GET_ALL_PATIENT);
+
    return (
       <DashboardContainer>
          <HeaderContainer>
@@ -51,7 +56,10 @@ const DashboardTableContainer = () => {
             </SearchFieldContainer>
          </HeaderContainer>
          <div style={{ marginTop: "2rem" }}>
-            <TableComponent tableData={tableData} />
+            {loading && <CircularProgress />}
+            {error && <h2>{error.message}</h2>}
+            {data && <TableComponent tableData={data.getAllPatients} />}
+            {console.log(data)}
          </div>
       </DashboardContainer>
    );
