@@ -1,10 +1,22 @@
 import TableComponent from "../../../../../Components/Dashboard-Component/Table.component";
-import { PatientData } from "../../../../../Redux/Patient.data";
+import { GET_ALL_PATIENT_MIN } from "../../../../../GraphQL/Queries.graphql";
+import { useTableHooks } from "../../../../../Hooks/Table.hooks";
 
 const PatientAll = () => {
+   const { PatientTableHeading, tableBody } = useTableHooks(
+      GET_ALL_PATIENT_MIN,
+      "getAllPatients"
+   );
+
+   console.log(tableBody);
    return (
       <div style={{ marginTop: "2rem" }}>
-         <TableComponent tableData={PatientData} />
+         {tableBody && (
+            <TableComponent
+               tableHeading={PatientTableHeading}
+               tableBody={tableBody}
+            />
+         )}
       </div>
    );
 };

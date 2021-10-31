@@ -1,6 +1,5 @@
 //imports from external libraries
 import { Feed } from "semantic-ui-react";
-import Chip from "@mui/material/Chip";
 import ChipComponent from "./Chip.component";
 
 const feedSummary = {
@@ -24,10 +23,11 @@ const ActivityFeed = ({ activitysummary, activitydate, activityType }) => {
                </Feed.Summary>
                <Feed.Date>{activitydate}</Feed.Date>
                {activityType &&
-                  activityType.map((type) => {
+                  activityType.map((type, idx) => {
                      const { marker, activityType } = type;
                      return (
                         <ChipComponent
+                           key={idx}
                            chiptext={activityType}
                            chipcolor={marker}
                         />

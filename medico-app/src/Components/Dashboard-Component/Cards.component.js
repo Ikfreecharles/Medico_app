@@ -56,11 +56,11 @@ const Icon = styled.img`
    width: 2rem;
 `;
 
-const ViewAllButtonContainer = styled.div`
-   display: flex;
-   justify-content: right;
-   padding: 0;
-`;
+// const ViewAllButtonContainer = styled.div`
+//    display: flex;
+//    justify-content: right;
+//    padding: 0;
+// `;
 
 const Cards = ({
    title,

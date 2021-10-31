@@ -5,6 +5,7 @@ export const GET_ALL_PATIENT = gql`
       getAllPatients {
          id
          firstName
+         lastName
          admittedDate
          status
          examination {
@@ -13,6 +14,18 @@ export const GET_ALL_PATIENT = gql`
          }
          diagnosis
          recovery
+         test
+      }
+   }
+`;
+
+export const GET_ALL_PATIENT_MIN = gql`
+   query {
+      getAllPatients {
+         id
+         firstName
+         lastName
+         dob
          test
       }
    }

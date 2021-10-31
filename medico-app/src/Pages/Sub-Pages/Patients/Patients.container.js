@@ -57,7 +57,7 @@ const Patients = () => {
             >
                <PatientsFulldetails />
                <PatientsVitals />
-               <PatientsCareplan />
+               {/* <PatientsCareplan /> */}
             </Grid.Column>
          </Grid>
       </PatientOuterContainer>

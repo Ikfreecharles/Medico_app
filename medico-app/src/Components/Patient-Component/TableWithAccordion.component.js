@@ -51,23 +51,25 @@ const AccordianDiv = styled.section`
 `;
 
 class TableWithAccordionComponent extends Component {
-   state = { activeIndex: 0 };
+   constructor(props) {
+      super(props);
 
-   handleClick = (e, titleProps) => {
-      const { index } = titleProps;
-      const { activeIndex } = this.state;
-      const newIndex = activeIndex === index ? -1 : index;
+      this.state = { activeIndex: 0 };
 
-      this.setState({ activeIndex: newIndex });
-   };
+      this.handleClick = (e, titleProps) => {
+         const { index } = titleProps;
+         const { activeIndex } = this.state;
+         const newIndex = activeIndex === index ? -1 : index;
 
+         this.setState({ activeIndex: newIndex });
+      };
+   }
    render() {
       const { activeIndex } = this.state;
       return (
          <Accordion>
             {ActivitiesGoal.map((activities) => {
-               const { id, Activity, ActivitySince, Progress, Goals } =
-                  activities;
+               const { id, Activity, ActivitySince, Progress } = activities;
                return (
                   <AccordianDiv key={id} progress={Progress}>
                      <Accordion.Title
@@ -97,7 +99,10 @@ class TableWithAccordionComponent extends Component {
                      </Accordion.Title>
                      <Accordion.Content active={activeIndex === id}>
                         <div style={{ marginBottom: "2rem" }}>
-                           <TableComponent tableData={Goals} />
+                           <TableComponent
+                              tableHead={this.props.patientActivityGoalsHeading}
+                              tableBody={this.props.tableBody}
+                           />
                         </div>
                      </Accordion.Content>
                   </AccordianDiv>

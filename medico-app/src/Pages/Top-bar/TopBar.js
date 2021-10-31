@@ -3,6 +3,7 @@ import styled from "styled-components";
 import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 //imports from within the project
 import Avatar from "../../Components/Dashboard-Component/Avatar.component";
@@ -17,6 +18,7 @@ import {
 } from "../../Redux/Top-bar/Topbar.actions";
 import ProfileModal from "./Modals/Profile.modal";
 import NotificationModal from "./Modals/Notification.modal";
+import CreatePatientModal from "./Modals/CreatePatient.modal";
 
 const TopBarContainer = styled.section`
    display: flex;
@@ -92,10 +94,14 @@ function TopBar() {
    const openNotifications = useSelector(
       (state) => state.topBar.openNotification
    );
+   const openCreatePatient = useSelector(
+      (state) => state.topBar.createNewPatientModal
+   );
+
    return (
       <TopBarContainer>
          <SearchField />
-         <TimeBar>{new Date().toUTCString()}</TimeBar>
+         <TimeBar>{moment().format("LLLL")}</TimeBar>
          <InnerContainer>
             <DoctorName>Welcome, Dr Savannah</DoctorName>
             <ViewAllContainer
@@ -136,6 +142,13 @@ function TopBar() {
          </InnerContainer>
          {openProfileOptions && <ProfileModal />}
          {openNotifications && <NotificationModal />}
+         {openCreatePatient && (
+            <CreatePatientModal
+               open={openCreatePatient}
+               dispatch={dispatch}
+               openCreatePatientModal={openCreatePatientModal}
+            />
+         )}
       </TopBarContainer>
    );
 }

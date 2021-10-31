@@ -1,3 +1,4 @@
+//imports from external libraries
 import { useState } from "react";
 import styled from "styled-components";
 import Paper from "@mui/material/Paper";
@@ -8,10 +9,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { CircularProgress } from "@mui/material";
+import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { LinearProgress } from "@mui/material";
+
+//imports from within the project
+import { handleTableCellRender } from "../../Utils/TableFunctions.utils";
 
 const tableStyle = {
    fontFamily: "var(--main-font)",
@@ -62,15 +66,23 @@ const TableOuterDiv = styled.section`
             }
          }
       }
+      div {
+         div {
+            font-size: 1.2rem;
+            p {
+               font-size: 1.2rem;
+               margin-bottom: 0;
+            }
+         }
+      }
    }
 `;
 
-const TableComponent = ({ tableData }) => {
+const TableComponent = ({ tableHeading, tableBody }) => {
    const [page, setPage] = useState(0);
-   const [rowsPerPage, setRowsPerPage] = useState(10);
+   const [rowsPerPage, setRowsPerPage] = useState(7);
 
    const handleChangePage = (event, newPage) => {
-      event.preventDefault();
       setPage(newPage);
    };
 
@@ -79,97 +91,13 @@ const TableComponent = ({ tableData }) => {
       setPage(0);
    };
 
-   const handleTableCellRender = (
-      heading,
-      item,
-      Pie,
-      Box,
-      Typo,
-      ProgressBar,
-      styling
-   ) => {
-      if (heading === "test" || heading === "status") {
-         return (
-            <Box sx={{ position: "relative", display: "inline-flex" }}>
-               <Pie
-                  variant="determinate"
-                  value={item}
-                  sx={
-                     item < 41
-                        ? { color: "var(--main-red)" }
-                        : item < 70
-                        ? { color: "var(--main-orange)" }
-                        : item <= 100
-                        ? { color: "var(--main-green)" }
-                        : ""
-                  }
-               />
-               <Box
-                  sx={{
-                     top: 0,
-                     left: 0,
-                     bottom: 0,
-                     right: 0,
-                     position: "absolute",
-                     display: "flex",
-                     alignItems: "center",
-                     justifyContent: "center",
-                  }}
-               >
-                  <Typo
-                     variant="caption"
-                     component="div"
-                     sx={styling}
-                  >{`${item}%`}</Typo>
-               </Box>
-            </Box>
-         );
-      }
-      if (heading === "Patient") {
-         return (
-            <div style={{ display: "flex", alignItems: "center" }}>
-               <img
-                  src={item.Useravatar}
-                  alt={item}
-                  style={{ marginRight: "0.3rem", width: "2.2rem" }}
-               />
-               <p>{item.Patient}</p>
-            </div>
-         );
-      }
-      if (heading === "recovery") {
-         return (
-            <ProgressBar
-               variant="determinate"
-               value={item}
-               sx={{
-                  backgroundColor: "var(--light-grey)",
-                  borderRadius: "10px",
-               }}
-            />
-         );
-      }
-      if (heading === "examination" || heading === "Priority") {
-         return (
-            <p
-               style={
-                  item.marker === 1
-                     ? { color: "var(--main-blue)" }
-                     : item.marker === 2
-                     ? { color: "var(--main-orange)" }
-                     : item.marker === 3
-                     ? { color: "var(--main-green)" }
-                     : ""
-               }
-            >
-               {item.examination || item.Priority}
-            </p>
-         );
-      } else {
-         return item;
-      }
-   };
-
+   if (tableBody.length <= 0)
+      return (
+         <Alert severity="info">
+            <AlertTitle>No Data</AlertTitle>
+            There is no data to display
+         </Alert>
+      );
    return (
       <TableOuterDiv>
          <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -177,17 +105,18 @@ const TableComponent = ({ tableData }) => {
                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                      <TableRow>
-                        {Object.keys(tableData.at(0))
-                           .filter(
-                              (item) => item !== "id" && item !== "__typename"
-                           )
-                           .map((patient) => (
-                              <TableCell sx={tableStyle}>{patient}</TableCell>
-                           ))}
+                        {tableHeading.map((patient) => {
+                           const { id, title } = patient;
+                           return (
+                              <TableCell sx={tableStyle} key={id}>
+                                 {title}
+                              </TableCell>
+                           );
+                        })}
                      </TableRow>
                   </TableHead>
                   <TableBody>
-                     {tableData
+                     {tableBody
                         .slice(
                            page * rowsPerPage,
                            page * rowsPerPage + rowsPerPage
@@ -195,17 +124,20 @@ const TableComponent = ({ tableData }) => {
                         .map((patient) => {
                            return (
                               <TableRow hover key={patient.id}>
-                                 {Object.keys(tableData.at(0))
+                                 {tableHeading
                                     .filter(
                                        (item) =>
                                           item !== "id" && item !== "__typename"
                                     )
                                     .map((heading) => {
-                                       const item = patient[heading];
+                                       const item = patient[heading.code];
                                        return (
-                                          <TableCell sx={tableStyle}>
+                                          <TableCell
+                                             sx={tableStyle}
+                                             key={heading.id}
+                                          >
                                              {handleTableCellRender(
-                                                heading,
+                                                heading.code,
                                                 item,
                                                 CircularProgress,
                                                 Box,
@@ -222,11 +154,13 @@ const TableComponent = ({ tableData }) => {
                   </TableBody>
                </Table>
             </TableContainer>
-            {tableData.length >= 10 && (
+
+            {/* Table pagination */}
+            {tableBody.length > 10 && (
                <TablePagination
-                  rowsPerPageOptions={[10, 25, 100]}
+                  rowsPerPageOptions={[7, 25, 100]}
                   component="div"
-                  count={Object.values(tableData).length}
+                  count={tableBody.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onPageChange={handleChangePage}

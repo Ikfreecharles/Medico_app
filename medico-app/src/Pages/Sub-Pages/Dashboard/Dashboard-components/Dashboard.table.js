@@ -1,16 +1,14 @@
 //imports from external libraries
 import styled from "styled-components";
-import { useQuery } from "@apollo/client";
 
 //imports from within the project
-import { tableData } from "../../../../Redux/TableData";
 import Titles from "../../../../Components/Dashboard-Component/Titles.component";
 import SearchField from "../../../../Components/Dashboard-Component/Search.component";
 import ViewAllButton from "../../../../Components/Dashboard-Component/ViewAllButton.component";
 import TableComponent from "../../../../Components/Dashboard-Component/Table.component";
 import SelectFilterComponent from "../../../../Components/Dashboard-Component/SelectFilter.component";
 import { GET_ALL_PATIENT } from "../../../../GraphQL/Queries.graphql";
-import { CircularProgress } from "@mui/material";
+import { useTableHooks } from "../../../../Hooks/Table.hooks";
 
 const DashboardContainer = styled.div`
    background-color: var(--main-white);
@@ -37,7 +35,10 @@ const SearchFieldContainer = styled.div`
 const diagnosis = ["Influenza", "Covid-19", "Malaria", "Diahrreah"];
 
 const DashboardTableContainer = () => {
-   const { loading, error, data } = useQuery(GET_ALL_PATIENT);
+   const { DashboardTableHeading, tableBody } = useTableHooks(
+      GET_ALL_PATIENT,
+      "getAllPatients"
+   );
 
    return (
       <DashboardContainer>
@@ -56,10 +57,12 @@ const DashboardTableContainer = () => {
             </SearchFieldContainer>
          </HeaderContainer>
          <div style={{ marginTop: "2rem" }}>
-            {loading && <CircularProgress />}
-            {error && <h2>{error.message}</h2>}
-            {data && <TableComponent tableData={data.getAllPatients} />}
-            {console.log(data)}
+            {tableBody && (
+               <TableComponent
+                  tableHeading={DashboardTableHeading}
+                  tableBody={tableBody}
+               />
+            )}
          </div>
       </DashboardContainer>
    );

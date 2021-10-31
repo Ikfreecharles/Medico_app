@@ -10,18 +10,16 @@ const ViewAllButtonContainer = styled.button`
    padding: 1rem 1.5rem;
    border: none;
    cursor: pointer;
+   font-family: var(--main-font);
    background-color: ${(props) => props.backgroundcolor};
    border-radius: 3px;
    ${(props) =>
       props.outline &&
       `
-   border: 1px solid #000;
+   border: 1px solid;
+   border-color: ${(props) => props.outlinecolor};
    background: none;
    `}
-
-   p {
-      color: ${(props) => props.color};
-   }
 `;
 
 const ViewAllButton = ({
@@ -31,6 +29,8 @@ const ViewAllButton = ({
    text,
    icon,
    outline,
+   outlinecolor,
+   type,
 }) => {
    return link ? (
       <Link to={`/${link}`}>
@@ -38,8 +38,10 @@ const ViewAllButton = ({
             color={color}
             backgroundcolor={backgroundcolor}
             outline={outline}
+            outlinecolor={outlinecolor}
+            type={type}
          >
-            <p style={{ margin: "0" }}>{text}</p>
+            {text}
             {icon && <ArrowRightAltRoundedIcon />}
          </ViewAllButtonContainer>
       </Link>
@@ -48,8 +50,10 @@ const ViewAllButton = ({
          color={color}
          backgroundcolor={backgroundcolor}
          outline={outline}
+         outlinecolor={outlinecolor}
+         type={type}
       >
-         <p style={{ margin: "0" }}>{text}</p>
+         {text}
          {icon && <ArrowRightAltRoundedIcon />}
       </ViewAllButtonContainer>
    );

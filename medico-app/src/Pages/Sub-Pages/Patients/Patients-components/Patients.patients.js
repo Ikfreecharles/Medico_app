@@ -5,7 +5,6 @@ import styled from "styled-components";
 //imports from with the project
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
 import Titles from "../../../../Components/Dashboard-Component/Titles.component";
-import { PatientData } from "../../../../Redux/Patient.data";
 import PatientsAll from "./Patients-patients/Patients.all";
 
 const PatientsPatientsContainer = styled.section`
@@ -41,9 +40,7 @@ const PatientsPatients = () => {
          <TitleSearchDiv>
             <Titles title={"All Patient"} color={"var(--main-blue)"} />
          </TitleSearchDiv>
-         {submenuTitle === submenu[0].id && (
-            <PatientsAll patientData={PatientData} />
-         )}
+         {submenuTitle === submenu[0].id && <PatientsAll />}
       </PatientsPatientsContainer>
    );
 };
