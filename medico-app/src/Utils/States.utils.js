@@ -33,3 +33,22 @@ export const ADDRESS_STATE = {
    postCode: "",
    state: "",
 };
+export const PATIENT_VITAL_STATE = {
+   patientId: "",
+   vitalType: "",
+   vitalNumber: "",
+};
+export const ACTIVITY_STATE = {
+   patientId: "",
+   activity: "",
+   activitySince: "",
+   progress: "",
+};
+export const NEWGOALS_STATE = {
+   activityId: "",
+   subject: "",
+   priority: "",
+   date: "",
+   status: "",
+   frequency: "",
+};

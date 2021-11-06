@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
-const InputContainerDiv = styled.div`
-   margin: 0 2rem 1rem 0;
+const LabelStyle = styled.label`
+   font-size: 1rem;
+`;
 
+const InputContainerDiv = styled.div`
+   margin-top: 0.5rem;
    input,
    select {
       width: 100%;
@@ -10,11 +13,13 @@ const InputContainerDiv = styled.div`
       border: 1px solid var(--light-grey);
       border-radius: var(--border-radius);
       display: block;
+
       &:focus {
          outline: 1px solid var(--main-blue);
       }
       &::placeholder {
          color: var(--light-grey);
+         font-family: var(--main-font);
       }
    }
    em {
@@ -24,10 +29,11 @@ const InputContainerDiv = styled.div`
 
 const FormFieldComponent = (props) => {
    const { label, onChange, info, ...inputProps } = props;
-   //if select instead of input
+
+   //if type = select
    if (props.type === "select")
       return (
-         <label htmlFor={props.name}>
+         <LabelStyle htmlFor={props.name} className={props.name}>
             {label}:
             <br />
             <InputContainerDiv>
@@ -48,18 +54,18 @@ const FormFieldComponent = (props) => {
                </select>
                {info && <em>{info}</em>}
             </InputContainerDiv>
-         </label>
+         </LabelStyle>
       );
-   //if the input does not have the require attribute
+   //if the type = input
    return (
-      <label htmlFor={props.name}>
+      <LabelStyle htmlFor={props.name} className={props.name}>
          {label}:
          <br />
          <InputContainerDiv>
             <input onChange={onChange} {...inputProps} />
             {info && <em>{info}</em>}
          </InputContainerDiv>
-      </label>
+      </LabelStyle>
    );
 };
 

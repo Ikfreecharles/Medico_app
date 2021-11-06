@@ -7,11 +7,11 @@ import DatepickerComponent from "../../Components/Dashboard-Component/Datepicker
 
 //import from with the project
 import HamburgerAndHeading from "../../Components/Dashboard-Component/HamburgerAndHeading.component";
-import { topbarTitleChange } from "../../Redux/Top-bar/Topbar.actions";
-import Appointment from "../Sub-Pages/Appointments/Appointment.container";
-import Dashboard from "../Sub-Pages/Dashboard/Dashboard.container";
-import Patients from "../Sub-Pages/Patients/Patients.container";
-import SideBar from "../Sub-Pages/Side-bar/SideBar";
+import { topbarTitleChange } from "../../Redux/Modals/Modals.actions";
+import Appointment from "../Page/Appointments/Appointment.container";
+import Dashboard from "../Page/Dashboard/Dashboard.container";
+import Patients from "../Page/Patients/Patients.container";
+import SideBar from "../Page/Side-bar/SideBar";
 import TopBar from "../Top-bar/TopBar";
 
 //make outer container display inline block to make it the container responsive when hamburger toggled
@@ -51,7 +51,7 @@ const TopBarContainer = styled.div`
 
 const Home = () => {
    //get the page title from the redux store
-   const title = useSelector((state) => state.topBar.title);
+   const title = useSelector((state) => state.modal.title);
    const dispatch = useDispatch();
    const { pathname } = useLocation();
    console.log(useLocation());

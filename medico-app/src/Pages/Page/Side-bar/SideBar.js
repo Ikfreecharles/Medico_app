@@ -6,7 +6,7 @@ import styled from "styled-components";
 //import from within the project
 import IconComponent from "../../../Components/Icon.component";
 import { SideBarItem } from "../../../Redux/SideBarItem";
-import { topbarTitleChange } from "../../../Redux/Top-bar/Topbar.actions";
+import { topbarTitleChange } from "../../../Redux/Modals/Modals.actions";
 
 const SideBarTitle = styled.section`
    width: auto;

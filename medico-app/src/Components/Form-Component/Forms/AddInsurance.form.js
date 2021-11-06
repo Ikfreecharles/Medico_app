@@ -8,23 +8,32 @@ import { useDispatch, useSelector } from "react-redux";
 //imports from within the project
 import FormFieldComponent from "../FormField.component";
 import {
+   handleActions,
    handleChange,
    handleSubmit,
    mutationCallback,
 } from "../../../Utils/Functions.utils";
-import ViewAllButton from "../../Dashboard-Component/ViewAllButton.component";
 import { INSURANCE_INPUT } from "../../../GraphQL/Mutations.graphql";
 import { CircularProgress } from "@mui/material";
-import Titles from "../../Dashboard-Component/Titles.component";
-import { INSURANCE } from "../../../Const/AddInsurance.hook";
+import { INSURANCE } from "../../../Inputs/AddInsurance.input";
 import {
    formIncreaseStep,
+   resetFormStep,
    setPatientId,
 } from "../../../Redux/Form/Form.action";
+import AlertPopupComponent from "../AlertPopup.component";
+import { usePatientId } from "../../../Hooks/Form.hooks";
+import FormContainerForm from "./FormContainer.form";
+import { openCreatePatientModal } from "../../../Redux/Modals/Modals.actions";
 
-const AddInsuranceFormContainer = styled.div``;
+const PatientInsuranceDiv = styled.div`
+   margin-top: 1.5rem;
+   display: grid;
+   grid-template-columns: auto auto;
+   grid-gap: 1.5rem;
+`;
 
-const AddInsuranceForm = () => {
+const AddInsuranceForm = ({ currentStep }) => {
    const patientId = useSelector((state) => state.form.patientId);
    const dispatch = useDispatch();
    const [insurance, setInsurance] = useState({
@@ -33,38 +42,55 @@ const AddInsuranceForm = () => {
       insuranceNumber: "",
    });
 
+   //hook to set patient id in the form incase of error
+   usePatientId(setInsurance, insurance, patientId);
+
    const [createInsurance, { loading, error }] = useMutation(INSURANCE_INPUT, {
       onCompleted: async (data) => {
          await mutationCallback(
             setPatientId,
             data.createInsurance.id,
             dispatch,
-            formIncreaseStep
+            error,
+            [formIncreaseStep]
          );
       },
    });
 
    if (loading) return <CircularProgress />;
-   if (error) return <h2>{(error.message, error)}</h2>;
-   return (
-      <AddInsuranceFormContainer>
-         <Titles
-            title={"Add Insurance information"}
-            color={"var(--main-blue)"}
-         />
 
-         <form
-            onSubmit={async (e) =>
-               handleSubmit(
-                  e,
-                  createInsurance,
-                  insurance,
-                  setInsurance,
-                  INSURANCE_STATE
-               )
-            }
-         >
-            {INSURANCE.map((patientInsurance) => {
+   return (
+      <FormContainerForm
+         formtitle={"Create new Patient"}
+         title={"Add Patient Insurance Details"}
+         subtitle={`- Step ${currentStep} of 4 -`}
+         subheadingcolor={"var(--main-blue)"}
+         buttoncolor={"var(--main-green)"}
+         handleCancel={() =>
+            handleActions(dispatch, [openCreatePatientModal, resetFormStep])
+         }
+         handleSubmit={(e) =>
+            handleSubmit(
+               e,
+               createInsurance,
+               insurance,
+               setInsurance,
+               INSURANCE_STATE
+            )
+         }
+         buttons
+      >
+         <div>
+            {error && (
+               <AlertPopupComponent
+                  isOpen={true}
+                  severity={"error"}
+                  errorMessage={error.message}
+                  errorTitle={"An error has occured"}
+               />
+            )}
+
+            {INSURANCE.slice(0, 1).map((patientInsurance) => {
                return (
                   <FormFieldComponent
                      key={patientInsurance.id}
@@ -77,13 +103,23 @@ const AddInsuranceForm = () => {
                   />
                );
             })}
-            <ViewAllButton
-               color={"var(--main-white)"}
-               backgroundcolor={"var(--main-green)"}
-               text={"Save".toUpperCase()}
-            />
-         </form>
-      </AddInsuranceFormContainer>
+            <PatientInsuranceDiv>
+               {INSURANCE.slice(1).map((patientInsurance) => {
+                  return (
+                     <FormFieldComponent
+                        key={patientInsurance.id}
+                        {...patientInsurance}
+                        value={insurance[patientInsurance.name]}
+                        onChange={(e) =>
+                           patientInsurance.name !== "patientId" &&
+                           handleChange(e, setInsurance, insurance)
+                        }
+                     />
+                  );
+               })}
+            </PatientInsuranceDiv>
+         </div>
+      </FormContainerForm>
    );
 };
 

@@ -7,7 +7,7 @@ const ViewAllButtonContainer = styled.button`
    font-size: 12px;
    display: flex;
    align-items: center;
-   padding: 1rem 1.5rem;
+   padding: 1rem 2.5rem;
    border: none;
    cursor: pointer;
    font-family: var(--main-font);
@@ -41,7 +41,7 @@ const ViewAllButton = ({
             outlinecolor={outlinecolor}
             type={type}
          >
-            {text}
+            {text.toUpperCase()}
             {icon && <ArrowRightAltRoundedIcon />}
          </ViewAllButtonContainer>
       </Link>
@@ -53,7 +53,7 @@ const ViewAllButton = ({
          outlinecolor={outlinecolor}
          type={type}
       >
-         {text}
+         {text.toUpperCase()}
          {icon && <ArrowRightAltRoundedIcon />}
       </ViewAllButtonContainer>
    );

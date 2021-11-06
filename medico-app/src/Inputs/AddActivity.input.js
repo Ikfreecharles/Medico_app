@@ -1,0 +1,35 @@
+export const ACTIVITY = [
+   {
+      id: 1,
+      type: "text",
+      name: "patientId",
+      placeholder: "Patient ID",
+      label: "Patient ID",
+      required: true,
+      disabled: true,
+   },
+   {
+      id: 2,
+      type: "text",
+      name: "activity",
+      placeholder: "Activity",
+      label: "Activity",
+      required: true,
+   },
+   {
+      id: 3,
+      type: "date",
+      name: "activitySince",
+      placeholder: "Activity Since",
+      label: "Activity Since",
+      required: true,
+   },
+   {
+      id: 4,
+      type: "number",
+      name: "progress",
+      placeholder: "Progress",
+      label: "Progress",
+      required: true,
+   },
+];

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import topbarReducer from "./Top-bar/Topbar.reducer";
+import modalReducer from "./Modals/Modals.reducer";
 import hamburgerReducer from "./Hamburger/Hamburger.reducer";
 import formReducer from "./Form/Form.reducer";
 
 const RootReducer = combineReducers({
-   topBar: topbarReducer,
+   modal: modalReducer,
    hamburger: hamburgerReducer,
    form: formReducer,
 });

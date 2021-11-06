@@ -12,13 +12,21 @@ import SearchField from "../../Components/Dashboard-Component/Search.component";
 import ViewAllButton from "../../Components/Dashboard-Component/ViewAllButton.component";
 import {
    openCreatePatientModal,
+   openGoalsForm,
    openMessage,
    openNotification,
    openProfileOption,
-} from "../../Redux/Top-bar/Topbar.actions";
-import ProfileModal from "./Modals/Profile.modal";
-import NotificationModal from "./Modals/Notification.modal";
-import CreatePatientModal from "./Modals/CreatePatient.modal";
+} from "../../Redux/Modals/Modals.actions";
+import ProfileModal from "../Modals/Modal-pages/Profile.modal";
+import NotificationModal from "../Modals/Modal-pages/Notification.modal";
+import CreatePatientForm from "../../Components/Form-Component/Forms/CreatePatient.form";
+import ModalContainer from "../Modals/ModalContainer.modal";
+import { openPatientVitalEditModal } from "../../Redux/Modals/Modals.actions";
+import AddVitalForm from "../../Components/Form-Component/Forms/AddVital.form";
+import DeletePatientModal from "../Modals/Modal-pages/DeletePatient.modal";
+import AddActivityForm from "../../Components/Form-Component/Forms/AddActivity.form";
+import NewGoalsModal from "../Modals/Modal-pages/NewGoals.modal";
+import AddNewGoalsForm from "../../Components/Form-Component/Forms/AddNewGoals.form";
 
 const TopBarContainer = styled.section`
    display: flex;
@@ -89,14 +97,21 @@ const AvatarDiv = styled.div`
 function TopBar() {
    const dispatch = useDispatch();
    const openProfileOptions = useSelector(
-      (state) => state.topBar.openProfileOptions
+      (state) => state.modal.openProfileOptions
    );
    const openNotifications = useSelector(
-      (state) => state.topBar.openNotification
+      (state) => state.modal.openNotification
    );
    const openCreatePatient = useSelector(
-      (state) => state.topBar.createNewPatientModal
+      (state) => state.modal.createNewPatientModal
    );
+   const openPatientVitalEdit = useSelector(
+      (state) => state.modal.openPatientVitalEditModal
+   );
+   const selectedPatientOptionId = useSelector(
+      (state) => state.modal.selectedPatientOptionId
+   );
+   const openGoalsForms = useSelector((state) => state.modal.openGoalsForm);
 
    return (
       <TopBarContainer>
@@ -142,12 +157,60 @@ function TopBar() {
          </InnerContainer>
          {openProfileOptions && <ProfileModal />}
          {openNotifications && <NotificationModal />}
+
          {openCreatePatient && (
-            <CreatePatientModal
+            <ModalContainer
                open={openCreatePatient}
                dispatch={dispatch}
-               openCreatePatientModal={openCreatePatientModal}
-            />
+               actions={[openCreatePatientModal]}
+            >
+               <CreatePatientForm />
+            </ModalContainer>
+         )}
+         {openPatientVitalEdit && selectedPatientOptionId === 2 && (
+            <ModalContainer
+               open={openPatientVitalEdit}
+               dispatch={dispatch}
+               actions={[openPatientVitalEditModal]}
+            >
+               <AddVitalForm />
+            </ModalContainer>
+         )}
+         {openPatientVitalEdit && selectedPatientOptionId === 5 && (
+            <ModalContainer
+               open={openPatientVitalEdit}
+               dispatch={dispatch}
+               actions={[openPatientVitalEditModal]}
+            >
+               <DeletePatientModal />
+            </ModalContainer>
+         )}
+         {openPatientVitalEdit && selectedPatientOptionId === 4 && (
+            <ModalContainer
+               open={openPatientVitalEdit}
+               dispatch={dispatch}
+               actions={[openPatientVitalEditModal]}
+            >
+               <AddActivityForm />
+            </ModalContainer>
+         )}
+         {openPatientVitalEdit && selectedPatientOptionId === 3 && (
+            <ModalContainer
+               open={openPatientVitalEdit}
+               dispatch={dispatch}
+               actions={[openPatientVitalEditModal]}
+            >
+               <NewGoalsModal />
+            </ModalContainer>
+         )}
+         {openGoalsForms && (
+            <ModalContainer
+               open={openPatientVitalEdit}
+               dispatch={dispatch}
+               actions={[openPatientVitalEditModal, openGoalsForm]}
+            >
+               <AddNewGoalsForm />
+            </ModalContainer>
          )}
       </TopBarContainer>
    );

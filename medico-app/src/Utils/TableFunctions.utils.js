@@ -6,7 +6,12 @@ export const handleTableCellRender = (
    Box,
    Typo,
    ProgressBar,
-   styling
+   styling,
+   Edit,
+   dispatch,
+   action,
+   handleClick,
+   patientId
 ) => {
    if (heading === "test" || heading === "status") {
       return (
@@ -108,8 +113,16 @@ export const handleTableCellRender = (
    }
    if (heading === "newAge") {
       return `${item} years`;
+   }
+   if (heading === "edit") {
+      return (
+         <Edit
+            onClick={() => handleClick(patientId)}
+            style={{ cursor: "pointer" }}
+         />
+      );
    } else {
-      return item;
+      return item || <p style={{ color: "var(--light-grey)" }}>no info</p>;
    }
 };
 

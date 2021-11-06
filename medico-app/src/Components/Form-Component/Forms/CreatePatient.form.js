@@ -6,23 +6,29 @@ import styled from "styled-components";
 import AddAddressForm from "./AddAddress.form";
 import AddExaminationForm from "./AddExamination.form";
 import AddInsuranceForm from "./AddInsurance.form";
-import CreateNewPatientForm from "./CreateNewPatient.form";
+import AddPatientBasicInfoForm from "./AddPatientBasicInfo.form";
 
 const CreatePatientFormContainer = styled.div`
-   height: 100%;
-   width: 100%;
+   width: auto;
 `;
 
 const CreatePatientForm = () => {
-   const currentStep = useSelector((state) => state.form.count);
+   const currentStep = useSelector((state) => state.form.step);
    const patientId = useSelector((state) => state.form.patientId);
    return (
       <CreatePatientFormContainer>
-         <h2>{`Step ${currentStep} of 4`}</h2>
-         {currentStep === 1 && <CreateNewPatientForm />}
-         {currentStep === 2 && patientId && <AddExaminationForm />}
-         {currentStep === 3 && patientId && <AddInsuranceForm />}
-         {currentStep === 4 && patientId && <AddAddressForm />}
+         {currentStep === 1 && (
+            <AddPatientBasicInfoForm currentStep={currentStep} />
+         )}
+         {currentStep === 2 && patientId && (
+            <AddExaminationForm currentStep={currentStep} />
+         )}
+         {currentStep === 3 && patientId && (
+            <AddInsuranceForm currentStep={currentStep} />
+         )}
+         {currentStep === 4 && patientId && (
+            <AddAddressForm currentStep={currentStep} />
+         )}
       </CreatePatientFormContainer>
    );
 };

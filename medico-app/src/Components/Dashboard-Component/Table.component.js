@@ -13,9 +13,13 @@ import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { LinearProgress } from "@mui/material";
+import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
 //imports from within the project
 import { handleTableCellRender } from "../../Utils/TableFunctions.utils";
+import { openEditPatient } from "../../Redux/Modals/Modals.actions";
+import { useDispatch, useSelector } from "react-redux";
+import EditVitalModal from "../../Pages/Modals/Modal-pages/EditVital.modal";
 
 const tableStyle = {
    fontFamily: "var(--main-font)",
@@ -46,6 +50,7 @@ const TableOuterDiv = styled.section`
             }
             tbody {
                tr {
+                  position: relative;
                   td {
                      padding: 4px;
                      border-bottom: 1px solid var(--light-grey);
@@ -79,8 +84,13 @@ const TableOuterDiv = styled.section`
 `;
 
 const TableComponent = ({ tableHeading, tableBody }) => {
+   const dispatch = useDispatch();
+   const openEditPatientModal = useSelector(
+      (state) => state.modal.openEditPatient
+   );
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(7);
+   const [clickedIndex, setClickedIndex] = useState({});
 
    const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -89,6 +99,11 @@ const TableComponent = ({ tableHeading, tableBody }) => {
    const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(+event.target.value);
       setPage(0);
+   };
+
+   const handleClick = (tableId) => {
+      setClickedIndex((clickedIndex) => (clickedIndex = tableId));
+      dispatch(openEditPatient());
    };
 
    if (tableBody.length <= 0)
@@ -143,11 +158,20 @@ const TableComponent = ({ tableHeading, tableBody }) => {
                                                 Box,
                                                 Typography,
                                                 LinearProgress,
-                                                tableStyle
+                                                tableStyle,
+                                                MoreHorizRoundedIcon,
+                                                dispatch,
+                                                openEditPatient,
+                                                handleClick,
+                                                patient.id
                                              )}
                                           </TableCell>
                                        );
                                     })}
+                                 {openEditPatientModal &&
+                                    clickedIndex === patient.id && (
+                                       <EditVitalModal patientId={patient.id} />
+                                    )}
                               </TableRow>
                            );
                         })}

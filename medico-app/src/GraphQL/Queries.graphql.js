@@ -30,3 +30,12 @@ export const GET_ALL_PATIENT_MIN = gql`
       }
    }
 `;
+export const GET_ALL_PATIENT_ACTIVITIES = gql`
+   query Query($patientId: ID!) {
+      getAllPatientActivities(patientId: $patientId) {
+         id
+         activity
+         progress
+      }
+   }
+`;
