@@ -7,6 +7,7 @@ import styled from "styled-components";
 //imports from within the project
 import TableComponent from "../Dashboard-Component/Table.component";
 import { ActivitiesGoal } from "../../Redux/ActivitiesGoals.data";
+import PatientAccordionContentActivitiesGoals from "../../Pages/Page/Patients/Patients-components/Patient-careplan/Patient-careplan-content/PatientAccordionContent.activitiesGoals";
 
 const tableStyling = {
    fontFamily: "var(--main-font)",
@@ -14,9 +15,6 @@ const tableStyling = {
    fontSize: "var(--main-fontsize)",
    fontWeight: "500",
    paddingRight: "1rem",
-   // display: "flex",
-   // alignItems: "center",
-   // justifyContent: "space-between",
 };
 
 const AccordianDiv = styled.section`
@@ -68,10 +66,11 @@ class TableWithAccordionComponent extends Component {
       const { activeIndex } = this.state;
       return (
          <Accordion>
-            {ActivitiesGoal.map((activities) => {
-               const { id, Activity, ActivitySince, Progress } = activities;
+            {this.props.data.activities.map((activities) => {
+               const { id, activity, activitySince, progress, goals } =
+                  activities;
                return (
-                  <AccordianDiv key={id} progress={Progress}>
+                  <AccordianDiv key={id} progress={progress}>
                      <Accordion.Title
                         onClick={this.handleClick}
                         index={id}
@@ -80,28 +79,27 @@ class TableWithAccordionComponent extends Component {
                      >
                         <div className="progress__div">
                            <div>
-                              <Icon name="dropdown" /> {Activity}
+                              <Icon name="dropdown" /> {activity}
                            </div>
 
                            <div>
-                              {Progress >= 100
+                              {progress >= 100
                                  ? "Activity Completed"
-                                 : `${Progress}%`}
+                                 : `${progress}%`}
                            </div>
                         </div>
                         <LinearProgress
                            variant="determinate"
-                           value={Progress}
+                           value={progress}
                         />
                         <div style={{ color: "var(--main-lightgrey)" }}>
-                           Started: {ActivitySince}
+                           Started: {activitySince}
                         </div>
                      </Accordion.Title>
                      <Accordion.Content active={activeIndex === id}>
                         <div style={{ marginBottom: "2rem" }}>
-                           <TableComponent
-                              tableHead={this.props.patientActivityGoalsHeading}
-                              tableBody={this.props.tableBody}
+                           <PatientAccordionContentActivitiesGoals
+                              data={goals}
                            />
                         </div>
                      </Accordion.Content>

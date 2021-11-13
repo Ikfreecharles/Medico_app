@@ -20,6 +20,7 @@ import { ADD_ACTIVITIY } from "../../../GraphQL/Mutations.graphql";
 import AlertPopupComponent from "../AlertPopup.component";
 import { setPatientId } from "../../../Redux/Form/Form.action";
 import FormContainerForm from "./FormContainer.form";
+import { GET_ONE_PATIENT_ACTIVITY } from "../../../GraphQL/Queries.graphql";
 
 const AddActivityFormBody = styled.div`
    display: grid;
@@ -46,6 +47,12 @@ const AddActivityForm = () => {
             [openPatientVitalEditModal]
          );
       },
+      // refetchQueries: [
+      //    {
+      //       query: GET_ONE_PATIENT_ACTIVITY,
+      //       variables: { getOnePatientId: patientId },
+      //    },
+      // ],
    });
 
    if (loading) return <CircularProgress />;

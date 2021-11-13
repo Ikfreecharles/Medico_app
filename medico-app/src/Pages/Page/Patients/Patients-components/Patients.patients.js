@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Submenu from "../../../../Components/Dashboard-Component/Submenu.component";
 import Titles from "../../../../Components/Dashboard-Component/Titles.component";
 import PatientsAll from "./Patients-patients/Patients.all";
+import { PATIENT_SUBMENU } from "../../../../Inputs/Patient-inputs/Patients.input";
 
 const PatientsPatientsContainer = styled.section`
    padding: 2rem;
@@ -21,26 +22,19 @@ const TitleSearchDiv = styled.div`
    justify-content: space-between;
 `;
 
-const submenu = [
-   { id: "1", title: "All" },
-   { id: "2", title: "Admitted" },
-   { id: "3", title: "Registered" },
-   { id: "4", title: "Discharged" },
-];
-
 const PatientsPatients = () => {
-   const [submenuTitle, setSubmenuTitle] = useState(submenu[0].id);
+   const [submenuTitle, setSubmenuTitle] = useState(PATIENT_SUBMENU[0].id);
    return (
       <PatientsPatientsContainer>
          <Submenu
-            submenulist={submenu}
+            submenulist={PATIENT_SUBMENU}
             width={"100%"}
             setState={setSubmenuTitle}
          />
          <TitleSearchDiv>
             <Titles title={"All Patient"} color={"var(--main-blue)"} />
          </TitleSearchDiv>
-         {submenuTitle === submenu[0].id && <PatientsAll />}
+         {submenuTitle === PATIENT_SUBMENU[0].id && <PatientsAll />}
       </PatientsPatientsContainer>
    );
 };

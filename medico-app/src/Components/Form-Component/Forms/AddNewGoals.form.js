@@ -6,7 +6,7 @@ import { useMutation } from "@apollo/client";
 import { CircularProgress } from "@mui/material";
 
 //imports from within the project
-import { NEWGOALS } from "../../../Inputs/NewGoals.input";
+import { NEWGOALS } from "../../../Inputs/AddNewGoals.input";
 import {
    handleActions,
    handleChange,

@@ -9,6 +9,7 @@ import TableComponent from "../../../../Components/Dashboard-Component/Table.com
 import SelectFilterComponent from "../../../../Components/Dashboard-Component/SelectFilter.component";
 import { GET_ALL_PATIENT } from "../../../../GraphQL/Queries.graphql";
 import { useTableHooks } from "../../../../Hooks/Table.hooks";
+import { DashboardTableHeading } from "../../../../Inputs/Table.input";
 
 const DashboardContainer = styled.div`
    background-color: var(--main-white);
@@ -35,11 +36,7 @@ const SearchFieldContainer = styled.div`
 const diagnosis = ["Influenza", "Covid-19", "Malaria", "Diahrreah"];
 
 const DashboardTableContainer = () => {
-   const { DashboardTableHeading, tableBody } = useTableHooks(
-      GET_ALL_PATIENT,
-      "getAllPatients"
-   );
-
+   const { tableBody } = useTableHooks(GET_ALL_PATIENT, "getAllPatients");
    return (
       <DashboardContainer>
          <HeaderContainer>
@@ -61,6 +58,7 @@ const DashboardTableContainer = () => {
                <TableComponent
                   tableHeading={DashboardTableHeading}
                   tableBody={tableBody}
+                  defaultPagination={7}
                />
             )}
          </div>

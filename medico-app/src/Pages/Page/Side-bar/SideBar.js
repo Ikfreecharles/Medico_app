@@ -81,10 +81,4 @@ const SideBar = () => {
    );
 };
 
-// const mapDispatchToState = (dispatch) => ({
-//    topbarAction: (title) => {
-//       dispatch(topbarAction(title));
-//    },
-// });
-
 export default SideBar;

@@ -12,6 +12,17 @@ const UserAvatar = styled.img`
    border-radius: 50%;
    width: 70px;
 `;
+const UserInitial = styled.div`
+   background-color: var(--main-blue);
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 2rem;
+   color: var(--main-white);
+`;
 const UserDetailsContainer = styled.div`
    margin-left: 1rem;
 `;
@@ -31,7 +42,8 @@ const UserDetails = styled.p`
 
 const UserAvatarDetails = ({
    useravatar,
-   fullname,
+   firstName,
+   lastName,
    age,
    gender,
    namecolor,
@@ -39,9 +51,18 @@ const UserAvatarDetails = ({
 }) => {
    return (
       <UserAvatarDetailsContainer>
-         <UserAvatar src={useravatar} />
+         {useravatar ? (
+            <UserAvatar src={useravatar} />
+         ) : (
+            <UserInitial>{`${firstName.slice(0, 1)}${lastName.slice(
+               0,
+               1
+            )}`}</UserInitial>
+         )}
          <UserDetailsContainer>
-            <Fullname namecolor={namecolor}>{fullname}</Fullname>
+            <Fullname
+               namecolor={namecolor}
+            >{`${firstName} ${lastName}`}</Fullname>
             <UserDetails userdetailscolor={userdetailscolor}>{age}</UserDetails>
             <UserDetails userdetailscolor={userdetailscolor}>
                {gender}

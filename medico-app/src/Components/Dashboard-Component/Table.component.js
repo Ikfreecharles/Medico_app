@@ -9,17 +9,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { Alert, AlertTitle, CircularProgress } from "@mui/material";
-import Box from "@mui/material/Box";
-import { Typography } from "@mui/material";
-import { LinearProgress } from "@mui/material";
-import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
+import { Alert, AlertTitle } from "@mui/material";
 
 //imports from within the project
-import { handleTableCellRender } from "../../Utils/TableFunctions.utils";
+import {
+   handleTableCell,
+   handlePatientEditClick,
+} from "../../Utils/TableFunctions.utils";
 import { openEditPatient } from "../../Redux/Modals/Modals.actions";
 import { useDispatch, useSelector } from "react-redux";
 import EditVitalModal from "../../Pages/Modals/Modal-pages/EditVital.modal";
+import { Link } from "react-router-dom";
+import { setPatientId } from "../../Redux/Form/Form.action";
 
 const tableStyle = {
    fontFamily: "var(--main-font)",
@@ -38,7 +39,8 @@ const TableOuterDiv = styled.section`
             thead {
                tr {
                   th {
-                     padding-left: 4px;
+                     padding-left: 1px;
+                     padding-right: 1px;
                      background-color: #f9f9f9;
                      border-left: 1px solid #f5f5f5;
                      border-bottom: none;
@@ -50,7 +52,7 @@ const TableOuterDiv = styled.section`
             }
             tbody {
                tr {
-                  position: relative;
+                  a,
                   td {
                      padding: 4px;
                      border-bottom: 1px solid var(--light-grey);
@@ -60,10 +62,19 @@ const TableOuterDiv = styled.section`
                            background: none;
                         }
                      }
-                     span {
-                        .css-5xe99f-MuiLinearProgress-bar1 {
-                           background-color: #479fda;
-                           border-radius: 10px;
+                     a {
+                        width: 100vw;
+                        border-bottom: none;
+                        div {
+                           span {
+                              background: none;
+                           }
+                        }
+                        span {
+                           .css-5xe99f-MuiLinearProgress-bar1 {
+                              background-color: #479fda;
+                              border-radius: 10px;
+                           }
                         }
                      }
                   }
@@ -73,9 +84,7 @@ const TableOuterDiv = styled.section`
       }
       div {
          div {
-            font-size: 1.2rem;
             p {
-               font-size: 1.2rem;
                margin-bottom: 0;
             }
          }
@@ -83,13 +92,13 @@ const TableOuterDiv = styled.section`
    }
 `;
 
-const TableComponent = ({ tableHeading, tableBody }) => {
+const TableComponent = ({ tableHeading, tableBody, defaultPagination }) => {
    const dispatch = useDispatch();
    const openEditPatientModal = useSelector(
       (state) => state.modal.openEditPatient
    );
    const [page, setPage] = useState(0);
-   const [rowsPerPage, setRowsPerPage] = useState(7);
+   const [rowsPerPage, setRowsPerPage] = useState(defaultPagination);
    const [clickedIndex, setClickedIndex] = useState({});
 
    const handleChangePage = (event, newPage) => {
@@ -99,11 +108,6 @@ const TableComponent = ({ tableHeading, tableBody }) => {
    const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(+event.target.value);
       setPage(0);
-   };
-
-   const handleClick = (tableId) => {
-      setClickedIndex((clickedIndex) => (clickedIndex = tableId));
-      dispatch(openEditPatient());
    };
 
    if (tableBody.length <= 0)
@@ -121,9 +125,13 @@ const TableComponent = ({ tableHeading, tableBody }) => {
                   <TableHead>
                      <TableRow>
                         {tableHeading.map((patient) => {
-                           const { id, title } = patient;
+                           const { id, title, minWidth } = patient;
                            return (
-                              <TableCell sx={tableStyle} key={id}>
+                              <TableCell
+                                 sx={tableStyle}
+                                 key={id}
+                                 style={{ minWidth: minWidth, width: minWidth }}
+                              >
                                  {title}
                               </TableCell>
                            );
@@ -137,6 +145,7 @@ const TableComponent = ({ tableHeading, tableBody }) => {
                            page * rowsPerPage + rowsPerPage
                         )
                         .map((patient) => {
+                           const link = `/patients/${patient.id}`;
                            return (
                               <TableRow hover key={patient.id}>
                                  {tableHeading
@@ -146,24 +155,47 @@ const TableComponent = ({ tableHeading, tableBody }) => {
                                     )
                                     .map((heading) => {
                                        const item = patient[heading.code];
-                                       return (
+
+                                       return heading.link ? (
+                                          <TableCell
+                                             sx={tableStyle}
+                                             key={heading.id}
+                                             onClick={() =>
+                                                dispatch(
+                                                   setPatientId(patient.id)
+                                                )
+                                             }
+                                          >
+                                             <TableCell
+                                                component={Link}
+                                                to={link}
+                                             >
+                                                {handleTableCell(
+                                                   heading.code,
+                                                   item,
+                                                   dispatch,
+                                                   openEditPatient,
+                                                   handlePatientEditClick,
+                                                   patient.id,
+                                                   setClickedIndex,
+                                                   clickedIndex
+                                                )}
+                                             </TableCell>
+                                          </TableCell>
+                                       ) : (
                                           <TableCell
                                              sx={tableStyle}
                                              key={heading.id}
                                           >
-                                             {handleTableCellRender(
+                                             {handleTableCell(
                                                 heading.code,
                                                 item,
-                                                CircularProgress,
-                                                Box,
-                                                Typography,
-                                                LinearProgress,
-                                                tableStyle,
-                                                MoreHorizRoundedIcon,
                                                 dispatch,
                                                 openEditPatient,
-                                                handleClick,
-                                                patient.id
+                                                handlePatientEditClick,
+                                                patient.id,
+                                                setClickedIndex,
+                                                clickedIndex
                                              )}
                                           </TableCell>
                                        );
@@ -182,7 +214,7 @@ const TableComponent = ({ tableHeading, tableBody }) => {
             {/* Table pagination */}
             {tableBody.length > 10 && (
                <TablePagination
-                  rowsPerPageOptions={[7, 25, 100]}
+                  rowsPerPageOptions={[5, 7, 25, 100]}
                   component="div"
                   count={tableBody.length}
                   rowsPerPage={rowsPerPage}

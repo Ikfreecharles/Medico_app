@@ -2,24 +2,25 @@
 import { useMutation } from "@apollo/client";
 import { CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import Titles from "../../../Components/Dashboard-Component/Titles.component";
-import ViewAllButton from "../../../Components/Dashboard-Component/ViewAllButton.component";
+
+//imports from within the project
 import AlertPopupComponent from "../../../Components/Form-Component/AlertPopup.component";
 import FormContainerForm from "../../../Components/Form-Component/Forms/FormContainer.form";
 import { DELETE_PATIENT } from "../../../GraphQL/Mutations.graphql";
 import { openPatientVitalEditModal } from "../../../Redux/Modals/Modals.actions";
-import { handleActions, handleSubmit } from "../../../Utils/Functions.utils";
+import { handleActions } from "../../../Utils/Functions.utils";
 
 const DeletePatientModal = () => {
    const patientIdToDelete = useSelector((state) => state.form.patientId);
    const dispatch = useDispatch();
    const [deletePatient, { loading, error }] = useMutation(DELETE_PATIENT);
 
-   const handleDelete = async (e, mutationFunction, state) => {
+   const handleDelete = async (e) => {
       try {
          e.preventDefault();
-         await mutationFunction({ variables: { id: state } });
+         await deletePatient({
+            variables: { deletePatientId: patientIdToDelete },
+         });
       } catch (error) {
          console.log(error);
       }
@@ -36,11 +37,7 @@ const DeletePatientModal = () => {
          handleCancel={async () =>
             handleActions(dispatch, [openPatientVitalEditModal])
          }
-         handleSubmit={async (e) =>
-            handleSubmit(
-               await handleDelete(e, deletePatient, patientIdToDelete)
-            )
-         }
+         handleSubmit={async (e) => await handleDelete(e)}
          buttons
          buttonText={"Delete"}
       >

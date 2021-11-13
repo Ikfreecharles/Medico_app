@@ -18,6 +18,7 @@ import FormFieldComponent from "../FormField.component";
 import { setPatientId } from "../../../Redux/Form/Form.action";
 import { usePatientId } from "../../../Hooks/Form.hooks";
 import FormContainerForm from "./FormContainer.form";
+import { GET_ONE_PATIENT_VITALS } from "../../../GraphQL/Queries.graphql";
 
 const AddVitalFormBody = styled.div`
    margin-top: 1.5rem;
@@ -46,6 +47,12 @@ const AddVitalForm = () => {
             [openPatientVitalEditModal]
          );
       },
+      refetchQueries: [
+         {
+            query: GET_ONE_PATIENT_VITALS,
+            variables: { getOnePatientId: patientIdFromStore },
+         },
+      ],
    });
    if (loading) return <CircularProgress />;
 

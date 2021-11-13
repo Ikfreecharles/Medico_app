@@ -9,10 +9,9 @@ import { openPatientVitalEditModal } from "../../../Redux/Modals/Modals.actions"
 import ContainerComponent from "../../../Components/TopBar-Component/Container.component";
 import { EDIT_PATIENT_OPTIONS } from "../../../Inputs/EditPatientOption.input";
 
-const ContainerComponentDiv = styled.td`
+const ContainerComponentDiv = styled.div`
    position: absolute;
-   right: 5px;
-   top: -50px;
+   right: -70px;
    border-radius: var(--border-radius) !important;
    background-color: var(--main-white);
    z-index: 999;

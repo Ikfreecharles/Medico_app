@@ -1,8 +1,12 @@
 import UserAvatarDetails from "../../../../Components/Patient-Component/UserAvatarDetails.component";
 import UserDetails from "../../../../Components/Patient-Component/UserDetails.component";
 import Titles from "../../../../Components/Dashboard-Component/Titles.component";
-import { SingleUserDetails } from "../../../../Redux/SingleUserDetails";
 import styled from "styled-components";
+import { useQuery } from "@apollo/client";
+import { GET_ONE_PATIENT } from "../../../../GraphQL/Queries.graphql";
+import { useSelector } from "react-redux";
+import { CircularProgress } from "@mui/material";
+import AlertPopupComponent from "../../../../Components/Form-Component/AlertPopup.component";
 
 const headingcolor = "var(--main-lightgrey)";
 const bodycolor = "var(--main-blue)";
@@ -13,6 +17,7 @@ const PatientFullDetailsContainer = styled.section`
    height: auto;
    margin-bottom: 0.8rem;
    padding: 2rem;
+   min-height: 27rem;
 `;
 
 const DetailsDivContainer = styled.div`
@@ -23,96 +28,110 @@ const UserDetailsDiv = styled.div`
    display: flex;
    flex-wrap: wrap;
 `;
+const listArray = (array) => {
+   return array.join(", ");
+};
+
+const listObject = (object) => {
+   return Object.values(object);
+};
 
 const PatientsFulldetails = () => {
+   const patientId = useSelector((state) => state.form.patientId);
+   const { loading, error, data } = useQuery(GET_ONE_PATIENT, {
+      variables: { getOnePatientId: patientId },
+   });
+
+   if (loading) return <CircularProgress />;
+   if (error)
+      return (
+         <AlertPopupComponent
+            severity={"error"}
+            isOpen={true}
+            errorTitle={"An error has occured"}
+            errorMessage={error.message}
+         />
+      );
+
    const {
-      userAvatar,
-      Name,
-      Dob,
-      Gender,
-      PatientID,
-      Address,
-      PreferredCommunication,
-      Language,
-      Insurance,
-      Conditions,
-      Medications,
-      Allergies,
-      LastAppointment,
-   } = SingleUserDetails;
-
-   const listArray = (array) => {
-      return array.join(", ");
-   };
-
-   const listObject = (object) => {
-      return Object.values(object);
-   };
-
+      firstName,
+      lastName,
+      dob,
+      gender,
+      patientID,
+      address,
+      preferredCommunication,
+      language,
+      insurance,
+      conditions,
+      medications,
+      allergies,
+      lastAppointment,
+   } = data.getOnePatient;
    return (
       <PatientFullDetailsContainer>
          <Titles title={"About Patient"} color={"var(--main-blue)"} />
          <DetailsDivContainer>
             <UserAvatarDetails
-               useravatar={userAvatar}
-               fullname={Name}
-               age={Dob}
-               gender={Gender}
+               firstName={firstName}
+               lastName={lastName}
+               age={dob}
+               gender={gender}
                namecolor={"var(--main-grey)"}
                userdetailscolor={"var(--main-grey)"}
             />
             <UserDetailsDiv>
                <UserDetails
                   userheading={"Patient ID"}
-                  userbody={PatientID}
+                  userbody={patientID}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Address"}
-                  userbody={Address}
+                  userbody={listObject(address)}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Preferred Communication"}
-                  userbody={PreferredCommunication}
+                  userbody={preferredCommunication}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Language"}
-                  userbody={listArray(Language)}
+                  userbody={listArray(language)}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Insurance"}
-                  userbody={listObject(Insurance)}
+                  userbody={listObject(insurance)}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Conditions"}
-                  userbody={listArray(Conditions)}
+                  userbody={listArray(conditions)}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Medications"}
-                  userbody={listArray(Medications)}
+                  userbody={listArray(medications)}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Allergies"}
-                  userbody={listArray(Allergies)}
+                  userbody={listArray(allergies)}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />
                <UserDetails
                   userheading={"Last Appointment"}
-                  userbody={LastAppointment}
+                  userbody={lastAppointment}
                   headingcolor={headingcolor}
                   bodycolor={bodycolor}
                />

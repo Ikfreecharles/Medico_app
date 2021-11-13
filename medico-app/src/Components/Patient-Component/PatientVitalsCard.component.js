@@ -6,7 +6,7 @@ const PatientVitalComponentContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
-   margin-right: 4rem;
+   margin-right: 8rem;
 `;
 
 const VitalIconContainer = styled.div`

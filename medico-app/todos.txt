@@ -1,5 +1,5 @@
 Tasks:
-- Call refetch on the mutations
-- Format the forms css
-- Verify the authentification
+- Call refetch on the mutations - Done
+- Format the forms css - Done
+- Add more form Validations and errors
 - Add the logic to get each patient details on click.

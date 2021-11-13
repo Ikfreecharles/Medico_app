@@ -18,7 +18,6 @@ export const GET_ALL_PATIENT = gql`
       }
    }
 `;
-
 export const GET_ALL_PATIENT_MIN = gql`
    query {
       getAllPatients {
@@ -26,6 +25,10 @@ export const GET_ALL_PATIENT_MIN = gql`
          firstName
          lastName
          dob
+         examination {
+            marker
+            examination
+         }
          test
       }
    }
@@ -36,6 +39,70 @@ export const GET_ALL_PATIENT_ACTIVITIES = gql`
          id
          activity
          progress
+      }
+   }
+`;
+
+export const GET_ONE_PATIENT = gql`
+   query Query($getOnePatientId: ID!) {
+      getOnePatient(id: $getOnePatientId) {
+         id
+         firstName
+         lastName
+         dob
+         gender
+         address {
+            address
+            postCode
+            state
+         }
+         preferredCommunication
+         language
+         insurance {
+            insuranceName
+            insuranceNumber
+         }
+         conditions
+         medications
+         allergies
+         lastAppointment
+         patientID
+      }
+   }
+`;
+export const GET_ONE_PATIENT_VITALS = gql`
+   query Query($getOnePatientId: ID!) {
+      getOnePatient(id: $getOnePatientId) {
+         id
+         vitals {
+            id
+            vitalType
+            vitalNumber
+            unit
+            changeInfo
+            changeDirection
+         }
+      }
+   }
+`;
+export const GET_ONE_PATIENT_ACTIVITY = gql`
+   query Query($getOnePatientId: ID!) {
+      getOnePatient(id: $getOnePatientId) {
+         id
+         activities {
+            id
+            activity
+            activitySince
+            progress
+            goals {
+               id
+               subject
+               date
+               status
+               frequency
+               priority
+            }
+         }
       }
    }
 `;
